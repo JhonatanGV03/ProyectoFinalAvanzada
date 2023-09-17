@@ -1,5 +1,4 @@
-package ProyectoFinal.model;
-
+package ProyectoFinal.model.classes;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
@@ -13,8 +12,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Cita implements Serializable {
-
+public class Mensaje implements Serializable {
     @Id
     private int codigo;
 }
+

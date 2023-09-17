@@ -1,4 +1,4 @@
-package ProyectoFinal.model;
+package ProyectoFinal.model.enums;
 
 public enum EstadoCita {
     PROGRAMADA,

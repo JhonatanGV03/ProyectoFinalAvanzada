@@ -1,4 +1,4 @@
-package ProyectoFinal.model;
+package ProyectoFinal.model.classes;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -8,14 +8,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class Administrador implements Serializable {
+public class Horario  implements Serializable {
     @Id
     private int codigo;
-
 }

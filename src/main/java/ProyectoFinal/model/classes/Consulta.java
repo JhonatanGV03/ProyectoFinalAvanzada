@@ -1,4 +1,4 @@
-package ProyectoFinal.model;
+package ProyectoFinal.model.classes;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

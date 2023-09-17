@@ -1,4 +1,4 @@
-package ProyectoFinal.model;
+package ProyectoFinal.model.classes;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -14,8 +14,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Usuario implements Serializable {
+public class Disponibilidad  implements Serializable {
     @Id
-    private String codigo;
-
+    private int codigo;
 }
