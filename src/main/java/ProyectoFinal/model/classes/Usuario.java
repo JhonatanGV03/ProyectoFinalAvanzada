@@ -10,8 +10,8 @@ import lombok.Setter;
 
 import java.io.Serializable;
 
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED )
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@MappedSuperclass
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

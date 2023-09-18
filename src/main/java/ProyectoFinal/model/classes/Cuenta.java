@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@MappedSuperclass
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED )
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

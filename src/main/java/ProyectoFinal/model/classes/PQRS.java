@@ -31,7 +31,7 @@ public class PQRS implements Serializable {
     //Relacion Clases
     @ManyToOne
     private Cita codigoCita;
-    @OneToMany(mappedBy="codigoMensaje")
+    @OneToMany(mappedBy="codigoPQRS")
     private List<Mensaje> mensajes;
 
 

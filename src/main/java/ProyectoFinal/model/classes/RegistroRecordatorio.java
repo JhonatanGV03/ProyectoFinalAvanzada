@@ -19,7 +19,7 @@ public class RegistroRecordatorio implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     //@Column(name="x")
-    private String codigoRecordatorio;
+    private int codigoRecordatorio;
     //Atributos
     //@Column(name="x")
     private LocalDateTime fechaEnvio;
