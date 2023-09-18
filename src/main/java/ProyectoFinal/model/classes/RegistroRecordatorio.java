@@ -1,13 +1,14 @@
 package ProyectoFinal.model.classes;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import ProyectoFinal.model.enums.EstadoRecordatorio;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor
@@ -16,5 +17,15 @@ import java.io.Serializable;
 @Setter
 public class RegistroRecordatorio implements Serializable {
     @Id
-    private String codigo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@Column(name="x")
+    private String codigoRecordatorio;
+    //Atributos
+    //@Column(name="x")
+    private LocalDateTime fechaEnvio;
+    //Enums
+    private EstadoRecordatorio codigoEstado;
+    //Relaciones
+    @OneToOne(mappedBy = "registroRecordatorio")
+    private Cita cita;
 }

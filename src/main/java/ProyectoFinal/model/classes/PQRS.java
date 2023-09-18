@@ -1,13 +1,17 @@
 package ProyectoFinal.model.classes;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import ProyectoFinal.model.enums.EstadoPQRS;
+import ProyectoFinal.model.enums.TipoPQRS;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,5 +19,20 @@ import java.io.Serializable;
 @Setter
 public class PQRS implements Serializable {
     @Id
-    private int codigo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@Column(name="x")
+    private int codigoPQRS;
+    //Atributos
+    //@Column(name="x")
+    private LocalDateTime fechaCreacion;
+    //Enums
+    private TipoPQRS tipoPQRS;
+    private EstadoPQRS codigoEstado;
+    //Relacion Clases
+    @ManyToOne
+    private Cita codigoCita;
+    @OneToMany(mappedBy="codigoMensaje")
+    private List<Mensaje> mensajes;
+
+
 }

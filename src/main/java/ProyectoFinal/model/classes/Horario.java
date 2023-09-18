@@ -1,7 +1,6 @@
 package ProyectoFinal.model.classes;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,5 +14,18 @@ import java.io.Serializable;
 @Setter
 public class Horario  implements Serializable {
     @Id
-    private int codigo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@Column(name="x")
+    private int codigoHorario;
+    //Atributos
+    //@Column(name="x")
+    private int dia;
+    //Tipo???
+    //@Column(name="x")
+    private String horaInicio;
+    //@Column(name="x")
+    private String horaFin;
+    //Relaciones
+    @ManyToOne
+    private Medico codigoMedico;
 }

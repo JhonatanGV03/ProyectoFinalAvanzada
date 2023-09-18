@@ -1,7 +1,6 @@
 package ProyectoFinal.model.classes;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,5 +15,13 @@ import java.io.Serializable;
 @Setter
 public class Disponibilidad  implements Serializable {
     @Id
-    private int codigo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@Column(name="x")
+    private int codigoDisponibilidad;
+    //Atributos
+    //@Column(name="x")
+    private int dia;
+    //Relaciones
+    @ManyToOne
+    private Medico codigoMedico;
 }
