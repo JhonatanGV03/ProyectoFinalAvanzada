@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor
@@ -20,7 +21,7 @@ public class Disponibilidad  implements Serializable {
     private int codigoDisponibilidad;
     //Atributos
     //@Column(name="x")
-    private int dia;
+    private LocalDateTime dia;
     //Relaciones
     @ManyToOne
     private Medico codigoMedico;

@@ -12,13 +12,8 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 public class Administrador extends Cuenta implements Serializable {
-
-    //Relaciones
-    @OneToMany(mappedBy="codigoAdministrador")
-    private List<Mensaje> mensajes;
 
 }

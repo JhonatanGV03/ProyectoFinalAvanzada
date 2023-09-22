@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.List;
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED )
 @NoArgsConstructor
@@ -24,4 +26,8 @@ public class Cuenta implements Serializable {
     private String correo;
     //@Column(name="x")
     private String password;
+
+    // Relaciones
+    @OneToMany(mappedBy="cuenta")
+    private List<Mensaje> mensajes;
 }

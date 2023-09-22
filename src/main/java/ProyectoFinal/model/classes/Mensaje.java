@@ -26,9 +26,7 @@ public class Mensaje implements Serializable {
     @ManyToOne
     private PQRS codigoPQRS;
     @ManyToOne
-    private Paciente codigoPaciente;
-    @ManyToOne
-    private Administrador codigoAdministrador;
+    private Cuenta cuenta;
     @OneToOne
     private Mensaje codigoMensajeInt;
 }
