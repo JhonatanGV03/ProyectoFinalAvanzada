@@ -19,12 +19,13 @@ public class Cuenta implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //@Column(name="x")
+    @Column(nullable = false, unique = true)
     private int codigoCuenta;
+
     //Atributos
-    //@Column(name="x")
+    @Column(nullable = false, unique = true)
     private String correo;
-    //@Column(name="x")
+    @Column(nullable = false)
     private String password;
 
     // Relaciones

@@ -20,8 +20,8 @@ import java.util.List;
 @Setter
 public class Medico extends Usuario implements Serializable {
     //Enums
-    @Column(nullable = false)
     private Especialidad codigoEspecialidad;
+
     //Relaciones
     @OneToMany(mappedBy="codigoMedico")
     private List<Horario> horarios;

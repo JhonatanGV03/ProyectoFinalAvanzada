@@ -1,7 +1,8 @@
 package ProyectoFinal.model.enums;
 
 public enum Especialidad {
-    MEDICO_GENERAL,
+    MEDICINA_GENERAL,
+    MEDICINA_INTERNA,
     ANOTOMIA_PATOLOGICA,
     CIRUGIA,
     PEDIATRIA,

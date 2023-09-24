@@ -18,14 +18,15 @@ import java.io.Serializable;
 @Setter
 public class Usuario extends Cuenta implements Serializable {
     //Atributos
-    //@Column(name="x")
+    @Column(nullable = false, length = 15, unique = true)
     private String cedula;
-    //@Column(name="x")
+    @Column(nullable = false, length = 40)
     private String nombre;
-    //@Column(name="x")
-    private int telefono;
-    //@Column(name="x")
+    @Column(nullable = false)
+    private String telefono;
+    @Column(nullable = false)
     private String urlFoto;
+
     //Enums
     private Ciudad codigoCiudad;
     private EstadoUsuario estadoCuenta;
