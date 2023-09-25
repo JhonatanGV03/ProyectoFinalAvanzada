@@ -1,8 +1,10 @@
-package ProyectoFinal.dto;
+package ProyectoFinal.dto.administrador;
+
+import ProyectoFinal.dto.HorarioDTO;
 
 import java.util.List;
 
-public record MedicoDTO (
+public record RegistroMedicoDTO(
     String cedula,
     String nombre,
     String ciudad,

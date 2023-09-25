@@ -1,10 +1,10 @@
-package ProyectoFinal.dto;
+package ProyectoFinal.dto.administrador;
 
 import ProyectoFinal.model.enums.EstadoCita;
 
 import java.time.LocalDateTime;
 
-public record CitasAdminDTO(
+public record ItemCitaDTO(
         int codigo,
         EstadoCita estadoCita,
         LocalDateTime fecha

@@ -1,4 +1,4 @@
 package ProyectoFinal.dto;
 
-public record DiaLibreDTO() {
+public record ItemCitaDTO() {
 }

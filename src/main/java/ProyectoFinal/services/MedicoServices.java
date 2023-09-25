@@ -1,17 +1,16 @@
 package ProyectoFinal.services;
 
-import ProyectoFinal.dto.AtencionMedicaDTO;
-import ProyectoFinal.dto.CitaMedicoDTO;
-import ProyectoFinal.dto.DiaLibreDTO;
-import org.hibernate.jdbc.Expectation;
+import ProyectoFinal.dto.RegistroAtencionDTO;
+import ProyectoFinal.dto.medico.ItemCitaDTO;
+import ProyectoFinal.dto.medico.DiaLibreDTO;
 
 import java.util.List;
 
 public interface MedicoServices {
 
-    List<CitaMedicoDTO> listarCitasPendientes(int codigo) throws Exception;
-    void atenderCita(AtencionMedicaDTO atencionMedica) throws Exception;
-    List<CitaMedicoDTO> listarCitasPaciente(int codigoPaciente) throws Exception;
-    void agendarDiaLibre(DiaLibreDTO diaLibreDTO) throws Exception;
-    List<CitaMedicoDTO> listarCitasRealizadasMedico() throws Exception;
+    List<ItemCitaDTO> listarCitasPendientes(int codigoMedico) throws Exception;
+    void atenderCita(RegistroAtencionDTO atencionMedica) throws Exception;
+    List<ItemCitaDTO> listarHistorialPaciente(int codigoPaciente) throws Exception;
+    int agendarDiaLibre(DiaLibreDTO diaLibreDTO) throws Exception;
+    List<ItemCitaDTO> listarCitasRealizadasMedico(int codigoMedico) throws Exception;
 }

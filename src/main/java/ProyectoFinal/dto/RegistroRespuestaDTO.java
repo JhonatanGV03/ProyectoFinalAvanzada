@@ -1,6 +1,6 @@
 package ProyectoFinal.dto;
 
-public record RespuestaPQRSDTO(
+public record RegistroRespuestaDTO(
         int codigo,
         int codUsuario,
         String mensaje

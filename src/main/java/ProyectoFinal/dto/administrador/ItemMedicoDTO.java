@@ -1,6 +1,6 @@
-package ProyectoFinal.dto;
+package ProyectoFinal.dto.administrador;
 
-public record InfoMedicoAdminDTO (
+public record ItemMedicoDTO(
         int cedula,
         String nombre,
         String especialidad

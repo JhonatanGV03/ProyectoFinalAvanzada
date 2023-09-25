@@ -1,4 +1,6 @@
-package ProyectoFinal.dto;
+package ProyectoFinal.dto.administrador;
+
+import ProyectoFinal.dto.HorarioDTO;
 
 import java.util.List;
 

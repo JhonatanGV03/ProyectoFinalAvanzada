@@ -1,27 +1,32 @@
 package ProyectoFinal.services;
 
 import ProyectoFinal.dto.*;
-import org.hibernate.boot.archive.scan.internal.ScanResultImpl;
+import ProyectoFinal.dto.administrador.ItemCitaDTO;
+import ProyectoFinal.dto.administrador.ItemMedicoDTO;
+import ProyectoFinal.dto.administrador.ItemPQRSDTO;
+import ProyectoFinal.dto.RegistroRespuestaDTO;
+import ProyectoFinal.dto.administrador.DetallesMedicoDTO;
+import ProyectoFinal.dto.administrador.RegistroMedicoDTO;
 
 import java.util.List;
 
 public interface AdministradorServices {
-    int crearMedico(MedicoDTO medico) throws Exception;
+    int crearMedico(RegistroMedicoDTO medico) throws Exception;
 
-    int actualizarmedico(int codigo, MedicoDTO medicoDTO) throws Exception;
+    int actualizarmedico(int codigo, RegistroMedicoDTO medicoDTO) throws Exception;
 
-    String eliminarmedico(int codigo) throws Exception;
+    void eliminarmedico(int codigo) throws Exception;
 
-    List<InfoMedicoAdminDTO> listarmedicos();
+    List<ItemMedicoDTO> listarmedicos();
 
     DetallesMedicoDTO obtenerMedico(int codigo);
 
-    List<PQRSAdminDTO> listarPQRS();
+    List<ItemPQRSDTO> listarPQRS();
 
-    String responderPQRS(RespuestaPQRSDTO respuesta) throws Exception;
+    int responderPQRS(RegistroRespuestaDTO registroRespuesta) throws Exception;
 
-    DetallesPQRSDTO verDetallesPQRS();
+    DetallesPQRSDTO verDetallesPQRS(int codigo) throws Exception;
 
-    List<CitasAdminDTO> listarCitas();
+    List<ItemCitaDTO> listarCitas();
 
 }

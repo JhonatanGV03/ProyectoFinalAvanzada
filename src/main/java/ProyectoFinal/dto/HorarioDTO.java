@@ -1,7 +1,8 @@
 package ProyectoFinal.dto;
 
-public class HorarioDTO {
-    private String dia;
-    private String horaInicio;
-    private String horaFin;
+public record HorarioDTO (
+        String dia,
+        String horaInicio,
+        String horaFin
+){
 }
