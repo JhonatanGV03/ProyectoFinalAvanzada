@@ -1,6 +1,7 @@
 package ProyectoFinal.services.implementacion;
 
-import ProyectoFinal.dto.DetallesPQRSDTO;
+import ProyectoFinal.dto.ItemPQRSDTO;
+import ProyectoFinal.dto.administrador.DetallesPQRSDTO;
 import ProyectoFinal.dto.RegistroRespuestaDTO;
 import ProyectoFinal.dto.administrador.*;
 import ProyectoFinal.model.classes.Medico;
@@ -48,13 +49,12 @@ public class AdministradorServicioImpl implements AdministradorServices {
     }
 
     private boolean estaRepetidoCorreo(String correo) {
-        medicoRepository.buscarPorCorreo(correo);
+         medicoRepository.buscarPorCorreo(correo);
 
     }
 
     private boolean estaRepetidoCedula(String cedula){
         medicoRepository.buscarPorCedula(cedula);
-
     }
 
     @Override

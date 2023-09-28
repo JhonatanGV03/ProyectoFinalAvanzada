@@ -1,22 +1,22 @@
 package ProyectoFinal.services;
 
 import ProyectoFinal.dto.NewPasswordDTO;
-import ProyectoFinal.dto.administrador.ItemPQRSDTO;
-import ProyectoFinal.dto.paciente.DetallePacienteDTO;
-import ProyectoFinal.dto.paciente.RegistroCitaDTO;
-import ProyectoFinal.dto.paciente.RegistroPQRSDTO;
+import ProyectoFinal.dto.RegistroRespuestaDTO;
+import ProyectoFinal.dto.paciente.*;
+import ProyectoFinal.dto.ItemPQRSDTO;
 
 import java.util.List;
 
 public interface PacienteServices {
+    int registrarse(RegistroPacienteDTO paciente) throws Exception;
+
     DetallePacienteDTO verDetallePaciente(int codigoPaciente) throws Exception;
-    void registrarse();
 
-    void editarPerfil();
+    int editarPerfil(int codigo, RegistroPacienteDTO pacienteDTO) throws Exception;
 
-    void eliminarCuenta();
+    void eliminarCuenta(int codigoPaciente) throws Exception;
 
-    void enviarLinkRecuperacion(String email);
+    void enviarLinkRecuperacion(String email) throws Exception;
 
     void cambiarPassword(NewPasswordDTO newPassword) throws Exception;
 
@@ -25,14 +25,16 @@ public interface PacienteServices {
     int crearPQRS(RegistroPQRSDTO registroPQRSDTO) throws Exception;
 
     List<ItemPQRSDTO> listarPQRSPaciente(int codigoPaciente) throws Exception;
+    DetallesPQRSDTO verDetallesPQRS(int codigo) throws Exception;
 
-    void responderPQRS();
+    int responderPQRS(RegistroRespuestaDTO registroRespuesta) throws Exception;
 
-    void listarCitasPaciente();
+    List<ItemCitaDTO> listarCitasPaciente() throws Exception;
 
-    void filtrarCitasPorFecha();
+    DetallesCitaDTO verDetalleCita(int codigo) throws Exception;
 
-    void filtrarCitasPorMedico();
+    void filtrarCitasPorFecha();  //??
 
-    void verDetalleCita();
+    void filtrarCitasPorMedico();  //??
+
 }

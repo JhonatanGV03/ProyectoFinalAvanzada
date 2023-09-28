@@ -1,12 +1,9 @@
 package ProyectoFinal.services;
 
-import ProyectoFinal.dto.*;
-import ProyectoFinal.dto.administrador.ItemCitaDTO;
-import ProyectoFinal.dto.administrador.ItemMedicoDTO;
-import ProyectoFinal.dto.administrador.ItemPQRSDTO;
+import ProyectoFinal.dto.administrador.*;
 import ProyectoFinal.dto.RegistroRespuestaDTO;
-import ProyectoFinal.dto.administrador.DetallesMedicoDTO;
-import ProyectoFinal.dto.administrador.RegistroMedicoDTO;
+import ProyectoFinal.dto.administrador.ItemCitaDTO;
+import ProyectoFinal.dto.ItemPQRSDTO;
 
 import java.util.List;
 
@@ -17,16 +14,16 @@ public interface AdministradorServices {
 
     void eliminarmedico(int codigo) throws Exception;
 
-    List<ItemMedicoDTO> listarmedicos();
+    List<ItemMedicoDTO> listarmedicos() throws Exception;
 
-    DetallesMedicoDTO obtenerMedico(int codigo);
+    DetallesMedicoDTO obtenerMedico(int codigo) throws Exception;
 
-    List<ItemPQRSDTO> listarPQRS();
+    List<ItemPQRSDTO> listarPQRS() throws Exception;
 
     int responderPQRS(RegistroRespuestaDTO registroRespuesta) throws Exception;
 
     DetallesPQRSDTO verDetallesPQRS(int codigo) throws Exception;
 
-    List<ItemCitaDTO> listarCitas();
+    List<ItemCitaDTO> listarCitas() throws Exception;
 
 }

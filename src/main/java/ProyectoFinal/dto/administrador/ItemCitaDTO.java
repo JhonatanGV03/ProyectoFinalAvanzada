@@ -1,12 +1,16 @@
 package ProyectoFinal.dto.administrador;
 
-import ProyectoFinal.model.enums.EstadoCita;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public record ItemCitaDTO(
+        @NotNull
         int codigo,
-        EstadoCita estadoCita,
-        LocalDateTime fecha
+        @NotNull
+        int estadoCita,
+        @NotNull
+        Date fecha
 ) {
 }

@@ -1,8 +1,13 @@
 package ProyectoFinal.dto.administrador;
 
+import jakarta.validation.constraints.NotNull;
+
 public record ItemMedicoDTO(
+        @NotNull
         int cedula,
+        @NotNull
         String nombre,
-        String especialidad
+        @NotNull
+        int especialidad
 ){
 }

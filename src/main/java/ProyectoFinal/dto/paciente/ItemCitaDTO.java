@@ -1,19 +1,20 @@
-package ProyectoFinal.dto.medico;
+package ProyectoFinal.dto.paciente;
 
 import jakarta.validation.constraints.NotNull;
 
 import java.sql.Time;
 import java.util.Date;
 
-public record ItemCitaDTO( //Item cita de la lista de citas que tiene el medico en su agenda
+public record ItemCitaDTO(
         @NotNull
-        String nombrePaciente,
+        int codigo,
         @NotNull
         Date fecha,
         @NotNull
         Time hora,
         @NotNull
-        int estadoCita
-
+        int especialidad,
+        @NotNull
+        String medico
 ) {
 }

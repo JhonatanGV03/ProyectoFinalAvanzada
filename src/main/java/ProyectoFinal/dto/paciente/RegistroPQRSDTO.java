@@ -1,4 +1,11 @@
 package ProyectoFinal.dto.paciente;
 
-public record RegistroPQRSDTO() {
+import jakarta.validation.constraints.NotNull;
+
+public record RegistroPQRSDTO(
+        @NotNull
+        String citaAsociada,
+        @NotNull
+        String mensaje
+) {
 }
