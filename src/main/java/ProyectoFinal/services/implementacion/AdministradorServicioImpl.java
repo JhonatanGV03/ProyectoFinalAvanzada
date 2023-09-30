@@ -14,6 +14,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
+import static org.antlr.v4.runtime.tree.xpath.XPath.findAll;
 
 @Service
 @RequiredArgsConstructor
@@ -32,6 +35,7 @@ public class AdministradorServicioImpl implements AdministradorServices {
         medicoNuevo.setTelefono(medico.telefono());
         medicoNuevo.setUrlFoto(medico.urlFoto());
         medicoNuevo.setCodigoEspecialidad(Especialidad.values()[medico.especialidad()]);
+        medicoNuevo.setEstadoCuenta(EstadoUsuario.ACTIVO);
 
         medicoNuevo.setCorreo(medico.correo());
         medicoNuevo.setPassword(medico.password());
@@ -59,22 +63,59 @@ public class AdministradorServicioImpl implements AdministradorServices {
 
     @Override
     public int actualizarmedico(int codigo, RegistroMedicoDTO medicoDTO) throws Exception {
+        Optional<Medico> opcional = medicoRepository.findById(codigo);
+
+        if (opcional.isEmpty()){
+            throw new Exception("No existe el medico");
+        }
         return 0;
     }
 
     @Override
     public void eliminarmedico(int codigo) throws Exception {
+        Optional<Medico> opcional = medicoRepository.findById(codigo);
+
+        if (opcional.isEmpty()){
+            throw new Exception("No existe el medico");
+        }
+
+
 
     }
 
     @Override
     public List<ItemMedicoDTO> listarmedicos() {
-        return null;
+        List<Medico> medicos = medicoRepository.findAll();
+
+        List<ItemMedicoDTO> respuesta = medicos.stream().map(medico -> new ItemMedicoDTO(
+                medico.getCodigoCuenta(),
+                medico.getNombre(),
+                medico.getCedula(),
+                medico.getEspecialidad(),
+                medico.getUrlFoto()
+        )).toList();
+
+        return medicos;
     }
 
     @Override
-    public DetallesMedicoDTO obtenerMedico(int codigo) {
-        return null;
+    public DetallesMedicoDTO obtenerMedico(int codigo) throws Exception {
+        Optional<Medico> opcional = medicoRepository.findById(codigo);
+        if (opcional.isEmpty()){
+            throw new Exception("No existe el medico");
+        }
+        Medico buscado = opcional.get();
+
+        return new DetallesMedicoDTO( //Quedó mal :C
+                buscado.getCodigoCuenta(),
+                buscado.getNombre(),
+                buscado.getCedula(),
+                buscado.getCiudad(),
+                buscado.getTelefono(),
+                buscado.getEspecialidad(),
+                buscado.getEstadoCuenta(),
+                buscado.getCorreo()
+        );
     }
 
     @Override

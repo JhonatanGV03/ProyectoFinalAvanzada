@@ -1,6 +1,12 @@
 package ProyectoFinal.model.enums;
 
 public enum EstadoRecordatorio {
-    ENVIADO,
-    NO_ENVIADO
+    ENVIADO("Enviado"),
+
+    NO_ENVIADO("No enviado");
+
+    private String estado;
+    EstadoRecordatorio(String estado) {
+        this.estado = estado;
+    }
 }
