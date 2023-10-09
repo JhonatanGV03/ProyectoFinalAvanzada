@@ -1,0 +1,8 @@
+BACKEND:
+- Revisar los dtos de las interfaces
+- Modificar los atributos de las fechas en el modelo LISTO
+- Modificar los atributos de los objetos en los dtos
+- Cambiar los nombres de los atributos en el modelo (codigoPaciente, etc) LISTO
+- Crear el DTO correcto para registrarse como paciente (contraseña)
+
+FRONTEND:
