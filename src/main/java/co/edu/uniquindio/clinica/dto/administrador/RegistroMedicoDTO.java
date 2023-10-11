@@ -11,7 +11,7 @@ import org.hibernate.validator.constraints.Length;
 import java.util.List;
 
 public record RegistroMedicoDTO(
-
+    int codigo,
     @NotNull
     //Revisar segun las reglas de negocio que ya ingresamos en la base de datos
     @Length(max = 200)

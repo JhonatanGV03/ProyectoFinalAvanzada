@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.Length;
 import java.util.List;
 
 public record DetallesMedicoDTO(
+
         @NotNull @Length(max = 50)
         String cedula,
         @NotNull

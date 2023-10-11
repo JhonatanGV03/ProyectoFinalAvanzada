@@ -17,7 +17,7 @@ public class Mensaje implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
-    private int codigoMensaje;
+    private int codigo;
 
     //Atributos
     @Column(nullable = false)

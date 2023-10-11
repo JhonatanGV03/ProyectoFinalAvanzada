@@ -20,7 +20,7 @@ public class Cuenta implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
-    private int codigoCuenta;
+    private int codigo;
 
     //Atributos
     @Column(nullable = false, unique = true)
