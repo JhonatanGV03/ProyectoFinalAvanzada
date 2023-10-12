@@ -3,7 +3,7 @@ package co.edu.uniquindio.clinica.services.interfaces;
 import co.edu.uniquindio.clinica.dto.RegistroRespuestaDTO;
 import co.edu.uniquindio.clinica.dto.administrador.*;
 import co.edu.uniquindio.clinica.dto.ItemPQRSDTO;
-import co.edu.uniquindio.clinica.dto.administrador.ItemCitaDTO;
+import co.edu.uniquindio.clinica.dto.administrador.ItemCitaAdminDTO;
 import co.edu.uniquindio.clinica.model.enums.EstadoPQRS;
 
 import java.util.List;
@@ -25,7 +25,7 @@ public interface AdministradorServices {
 
     DetallesPQRSDTO verDetallesPQRS(int codigo) throws Exception;
 
-    List<ItemCitaDTO> listarCitas() throws Exception;
+    List<ItemCitaAdminDTO> listarCitas() throws Exception;
 
     void cambiarEstadoPQRS(int codigoPQRS, EstadoPQRS estadoPQRS) throws Exception;
 

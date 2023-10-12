@@ -239,19 +239,14 @@ public class AdministradorServicioImpl implements AdministradorServices {
         /*return new DetallesPQRSDTO(
                 buscado.getCodigo(),
                 buscado.getEstado(),
-                buscado.getMotivo(),
-                buscado.getCita().getPaciente().getNombre(),
-                buscado.getCita().getMedico().getNombre(),
-                buscado.getCita().getMedico().getEspecialidad(),
-                buscado.getFechaCreacion(),
-                new ArrayList<>()
+                //new ArrayList<>()
         );*/
         return null;
     }
 
     @Override
-    public List<ItemCitaDTO> listarCitas() throws Exception {
-        /*List<Cita> citas = citaRepo.findAll();
+    public List<ItemCitaAdminDTO> listarCitas() throws Exception {
+        List<Cita> citas = citaRepo.findAll();
         List<ItemCitaAdminDTO> respuesta = new ArrayList<>();
 
         if(citas.isEmpty()){
@@ -260,18 +255,13 @@ public class AdministradorServicioImpl implements AdministradorServices {
 
         for( Cita c : citas ){
             respuesta.add( new ItemCitaAdminDTO(
-                    c.getCodigo(),
-                    c.getPaciente().getCedula(),
-                    c.getPaciente().getNombre(),
-                    c.getMedico().getNombre(),
-                    c.getMedico().getEspecialidad(),
+                    c.getCodigoCita(),
                     c.getEstado(),
-                    c.getFechaCita()
+                    c.getFechaCreacion()
             ) );
         }
 
-        return respuesta;*/
-        return null;
+        return respuesta;
     }
 
     @Override

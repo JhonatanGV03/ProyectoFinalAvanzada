@@ -1,10 +1,14 @@
 package co.edu.uniquindio.clinica.dto.administrador;
 
 import co.edu.uniquindio.clinica.dto.RespuestaDTO;
+import co.edu.uniquindio.clinica.model.enums.Especialidad;
+import co.edu.uniquindio.clinica.model.enums.EstadoCita;
+import co.edu.uniquindio.clinica.model.enums.EstadoPQRS;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -13,9 +17,9 @@ public record DetallesPQRSDTO(
         @NotNull
         int codigo,
         @NotNull
-        int estadoPQRS,
+        EstadoPQRS estadoPQRS,
         @NotNull
-        Date fechaPQRS,
+        LocalDateTime fechaPQRS,
 
         //Seccion mensajes
         @NotNull
@@ -35,11 +39,11 @@ public record DetallesPQRSDTO(
         @NotNull
         String nombreMedico,
         @NotNull
-        int especialidad,
+        Especialidad especialidad,
         @NotNull
-        Date fechaCita,
+        LocalDateTime fechaCita,
         @NotNull
-        int estadoCita,
+        EstadoCita estadoCita,
         @NotNull
         String motivoCita,
         @NotNull
