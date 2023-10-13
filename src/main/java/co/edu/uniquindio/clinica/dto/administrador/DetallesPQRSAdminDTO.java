@@ -4,7 +4,6 @@ import co.edu.uniquindio.clinica.dto.RespuestaDTO;
 import co.edu.uniquindio.clinica.model.enums.Especialidad;
 import co.edu.uniquindio.clinica.model.enums.EstadoCita;
 import co.edu.uniquindio.clinica.model.enums.EstadoPQRS;
-import jakarta.persistence.Lob;
 import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.Length;
 

@@ -11,12 +11,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MedicoServicioImpl implements MedicoServices {
     @Override
-    public List<ItemCitaDTO> listarCitasPendientes(int codigoMedico) throws Exception {
+    public List<ItemCitaMedicoDTO> listarCitasPendientes(int codigoMedico) throws Exception {
         return null;
     }
 
     @Override
-    public void atenderCita(RegistroAtencionDTO atencionMedica) throws Exception {
+    public void atenderCita(RegistroConsultaDTO atencionMedica) throws Exception {
 
     }
 

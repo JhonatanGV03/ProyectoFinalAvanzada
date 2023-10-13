@@ -3,7 +3,6 @@ package co.edu.uniquindio.clinica.dto.administrador;
 import co.edu.uniquindio.clinica.dto.HorarioDTO;
 import co.edu.uniquindio.clinica.model.enums.Ciudad;
 import co.edu.uniquindio.clinica.model.enums.Especialidad;
-import co.edu.uniquindio.clinica.model.enums.EstadoUsuario;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;

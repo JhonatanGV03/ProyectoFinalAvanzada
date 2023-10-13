@@ -1,25 +1,23 @@
-package co.edu.uniquindio.clinica.dto.paciente;
+package co.edu.uniquindio.clinica.dto.medico;
 
-import co.edu.uniquindio.clinica.model.enums.Especialidad;
+import co.edu.uniquindio.clinica.model.enums.EstadoCita;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public record ItemCitaDTO(
-        @Positive
-        int codigo,
+public record ItemCitaMedicoDTO( //Item cita de la lista de citas que tiene el medico en su agenda
+        @NotBlank @Length(max = 100)
+        String nombrePaciente,
         @NotEmpty
         LocalDate fecha,
         @NotEmpty
         LocalTime hora,
         @NotNull
-        Especialidad especialidad,
-        @NotBlank @Length(max = 100)
-        String nomMedico
+        EstadoCita estadoCita
+
 ) {
 }

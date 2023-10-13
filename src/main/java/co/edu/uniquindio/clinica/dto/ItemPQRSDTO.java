@@ -8,7 +8,6 @@ import jakarta.validation.constraints.Positive;
 import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /*
 REVISAR LOS ATRIBUTOS QUE VA A TENER ESTE ITEM

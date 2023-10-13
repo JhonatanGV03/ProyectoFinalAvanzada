@@ -1,34 +1,36 @@
 package co.edu.uniquindio.clinica.dto.paciente;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
+import co.edu.uniquindio.clinica.model.enums.Ciudad;
+import co.edu.uniquindio.clinica.model.enums.EPS;
+import co.edu.uniquindio.clinica.model.enums.TipoSangre;
+import jakarta.validation.constraints.*;
+import org.hibernate.validator.constraints.Length;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public record RegistroPacienteDTO (
-        @NotNull
+        @NotBlank @Length(max = 20)
         String cedula,
-        @NotNull @Email
-        String email,
-        @NotNull
-        String contrasena,
-        @NotNull
+        @NotBlank @Email @Length(max = 50)
+        String correo,
+        @NotBlank
+        String password,
+        @NotBlank @Length(max = 100)
         String nombre,
-        @NotNull
+        @NotBlank @Length(max = 10)
         String telefono,
         @NotNull
-        int ciudad,
-        @NotNull
-        Date fechaNacimiento,
-        @NotNull
+        Ciudad ciudad,
+        @NotEmpty @Past
+        LocalDate fechaNacimiento,
+        @NotBlank @Length(max = 250)
         String alergias,
         @NotNull
-        int eps,
+        EPS eps,
         @NotNull
-        int tipoSangre,
-        @NotNull
+        TipoSangre tipoSangre,
+        @NotBlank
         String urlFoto
-
 
 ){
 }

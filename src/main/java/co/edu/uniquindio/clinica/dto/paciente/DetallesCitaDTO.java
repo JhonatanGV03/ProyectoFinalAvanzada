@@ -1,34 +1,41 @@
 package co.edu.uniquindio.clinica.dto.paciente;
 
+import co.edu.uniquindio.clinica.model.enums.Especialidad;
+import co.edu.uniquindio.clinica.model.enums.EstadoCita;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import org.hibernate.validator.constraints.Length;
 
-import java.sql.Time;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public record DetallesCitaDTO(
-        @NotNull
+        @Positive
         int codigo,
+        @NotBlank @Length(max = 100)
+        String nomPaciente,
+        @NotEmpty
+        LocalDateTime fechaCreacion,
+        @NotEmpty
+        LocalDate fechaCita,
+        @NotEmpty
+        LocalTime horaCita,
         @NotNull
-        String paciente,
+        EstadoCita estadoCita,
+        @NotBlank @Length(max = 500)
+        String motivoConsulta,
+        @NotBlank @Length(max = 100)
+        String nomMedico,
         @NotNull
-        Date fechaCreacion,
-        @NotNull
-        Date fechaCita,
-        @NotNull
-        Time horaCita,
-        @NotNull
-        int estado,
-        @NotNull
-        String medico,
-        @NotNull
-        int especialidad,
-        @NotNull
+        Especialidad especialidad,
+        @NotBlank @Length(max = 500)
         String notasMedicas,
-        @NotNull
+        @NotBlank @Length(max = 500)
         String diagnostico,
-        @NotNull
+        @NotBlank @Length(max = 500)
         String tratamiento
-
-
         ){
 }

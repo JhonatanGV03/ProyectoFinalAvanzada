@@ -3,7 +3,6 @@ package co.edu.uniquindio.clinica.services.interfaces;
 import co.edu.uniquindio.clinica.dto.RegistroRespuestaDTO;
 import co.edu.uniquindio.clinica.dto.administrador.*;
 import co.edu.uniquindio.clinica.dto.ItemPQRSDTO;
-import co.edu.uniquindio.clinica.dto.administrador.ItemCitaAdminDTO;
 import co.edu.uniquindio.clinica.model.enums.EstadoPQRS;
 
 import java.util.List;
