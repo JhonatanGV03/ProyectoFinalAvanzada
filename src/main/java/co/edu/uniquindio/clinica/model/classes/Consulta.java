@@ -19,11 +19,11 @@ public class Consulta implements Serializable {
     private int codigoConsulta;
 
     //Atributos
-    @Column(nullable = false, length = 250)
+    @Column(nullable = false, length = 500)
     private String sintomas;
-    @Column(nullable = false, length = 250)
+    @Column(nullable = false, length = 500)
     private String diagnostico;
-    @Column(nullable = false, length = 250)
+    @Column(nullable = false, length = 500)
     private String tratamiento;
 
     //Relaciones

@@ -43,11 +43,12 @@ public class AdministradorServicioImpl implements AdministradorServices {
         }
 
         Medico medico = new Medico();
-        medico.setCedula(medicoDTO.cedula() );
-        medico.setTelefono(medicoDTO.telefono());
+
         medico.setNombre(medicoDTO.nombre() );
-        medico.setEspecialidad( medicoDTO.especialidad() );
+        medico.setCedula(medicoDTO.cedula() );
         medico.setCiudad(medicoDTO.ciudad());
+        medico.setEspecialidad( medicoDTO.especialidad() );
+        medico.setTelefono(medicoDTO.telefono());
         medico.setCorreo(medicoDTO.correo() );
         medico.setPassword(medicoDTO.password());
         medico.setUrlFoto(medicoDTO.urlFoto());
@@ -55,7 +56,7 @@ public class AdministradorServicioImpl implements AdministradorServices {
 
         Medico medicoNuevo = medicoRepo.save(medico);
 
-        asignarHorariosMedico(medicoNuevo, medicoDTO.horario_dto());
+        asignarHorariosMedico(medico, medicoDTO.horarios());
 
         return medicoNuevo.getCodigo();
 
@@ -87,7 +88,7 @@ public class AdministradorServicioImpl implements AdministradorServices {
 
 
     @Override
-    public int actualizarmedico(RegistroMedicoDTO medicoDTO) throws Exception {
+    public int actualizarmedico(DetallesMedicoDTO medicoDTO) throws Exception {
 
         Optional<Medico> opcional =medicoRepo.findById(medicoDTO.codigo());
 
@@ -97,11 +98,11 @@ public class AdministradorServicioImpl implements AdministradorServices {
 
         Medico buscado = opcional.get();
 
-        buscado.setCedula(medicoDTO.cedula() );
-        buscado.setTelefono(medicoDTO.telefono());
         buscado.setNombre(medicoDTO.nombre() );
-        buscado.setEspecialidad( medicoDTO.especialidad() );
+        buscado.setCedula(medicoDTO.cedula() );
         buscado.setCiudad(medicoDTO.ciudad());
+        buscado.setEspecialidad( medicoDTO.especialidad() );
+        buscado.setTelefono(medicoDTO.telefono());
         buscado.setCorreo(medicoDTO.correo() );
         buscado.setUrlFoto(medicoDTO.urlFoto());
 
@@ -134,6 +135,7 @@ public class AdministradorServicioImpl implements AdministradorServices {
         }
 
         List<ItemMedicoDTO> respuesta = medicos.stream().map( m -> new ItemMedicoDTO(
+                m.getCodigo(),
                 m.getCedula(),
                 m.getNombre(),
                 m.getEspecialidad()
@@ -151,17 +153,29 @@ public class AdministradorServicioImpl implements AdministradorServices {
         if( opcional.isEmpty() ){
             throw new Exception("No existe un médico con el código "+codigo);
         }
+        List<Horario> horarios = horarioRepo.findAllByMedicoCodigo(codigo);
+        List<HorarioDTO> horariosDTO = new ArrayList<>();
+
+        for( Horario h : horarios ){
+            horariosDTO.add( new HorarioDTO(
+                    h.getDia(),
+                    h.getHoraInicio(),
+                    h.getHoraFin()
+            ) );
+        }
 
         Medico buscado = opcional.get();
 
         return new DetallesMedicoDTO(
-                buscado.getCedula(),
+                buscado.getCodigo(),
                 buscado.getNombre(),
+                buscado.getCedula(),
                 buscado.getCiudad(),
+                buscado.getEspecialidad(),
                 buscado.getTelefono(),
                 buscado.getCorreo(),
-                buscado.getEspecialidad(),
-                new ArrayList<>()
+                buscado.getUrlFoto(),
+                horariosDTO
         );
     }
 
@@ -187,16 +201,16 @@ public class AdministradorServicioImpl implements AdministradorServices {
 
     @Override
     public int responderPQRS(RegistroRespuestaDTO registroRespuesta) throws Exception {
-        Optional<PQRS> opcionalPQRS = pqrsRepo.findById(registroRespuesta.codRadicado());
+        Optional<PQRS> opcionalPQRS = pqrsRepo.findById(registroRespuesta.codPqrs());
 
         if(opcionalPQRS.isEmpty()){
-            throw new Exception("No existe un PQRS con el código "+registroRespuesta.codRadicado());
+            throw new Exception("No existe un PQRS con el código "+registroRespuesta.codPqrs());
         }
 
-        Optional<Cuenta> opcionalCuenta = cuentaRepo.findById(registroRespuesta.codUsuario());
+        Optional<Cuenta> opcionalCuenta = cuentaRepo.findById(registroRespuesta.codCuenta());
 
         if(opcionalCuenta.isEmpty()){
-            throw new Exception("No existe una cuenta con el código "+registroRespuesta.codUsuario());
+            throw new Exception("No existe una cuenta con el código "+registroRespuesta.codCuenta());
         }
 
         Mensaje referenciaMensaje = null;
@@ -226,7 +240,7 @@ public class AdministradorServicioImpl implements AdministradorServices {
     }
 
     @Override
-    public DetallesPQRSDTO verDetallesPQRS(int codigo) throws Exception {
+    public DetallesPQRSAdminDTO verDetallesPQRS(int codigo) throws Exception {
 
         Optional<PQRS> opcional = pqrsRepo.findById(codigo);
 
@@ -236,7 +250,7 @@ public class AdministradorServicioImpl implements AdministradorServices {
 
         PQRS buscado = opcional.get();
 
-        /*return new DetallesPQRSDTO(
+        /*return new DetallesPQRSAdminDTO(
                 buscado.getCodigo(),
                 buscado.getEstado(),
                 //new ArrayList<>()

@@ -11,7 +11,7 @@ import java.util.List;
 public interface AdministradorServices {
     int crearMedico(RegistroMedicoDTO medico) throws Exception;
 
-    int actualizarmedico(RegistroMedicoDTO medicoDTO) throws Exception;
+    int actualizarmedico(DetallesMedicoDTO medicoDTO) throws Exception;
 
     void eliminarmedico(int codigo) throws Exception;
 
@@ -20,13 +20,12 @@ public interface AdministradorServices {
     DetallesMedicoDTO obtenerMedico(int codigo) throws Exception;
 
     List<ItemPQRSDTO> listarPQRS() throws Exception;
+    DetallesPQRSAdminDTO verDetallesPQRS(int codigo) throws Exception;
 
     int responderPQRS(RegistroRespuestaDTO registroRespuesta) throws Exception;
 
-    DetallesPQRSDTO verDetallesPQRS(int codigo) throws Exception;
-
+    void cambiarEstadoPQRS(int codigoPQRS, EstadoPQRS estadoPQRS) throws Exception;
     List<ItemCitaAdminDTO> listarCitas() throws Exception;
 
-    void cambiarEstadoPQRS(int codigoPQRS, EstadoPQRS estadoPQRS) throws Exception;
 
 }

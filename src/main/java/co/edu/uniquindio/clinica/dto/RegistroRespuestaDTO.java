@@ -1,14 +1,19 @@
 package co.edu.uniquindio.clinica.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import org.hibernate.validator.constraints.Length;
 
 
 public record RegistroRespuestaDTO(
-        @NotNull
-        int codRadicado, //Redicado ¿?
-        @NotNull
-        int codUsuario,
-        @NotNull
-        int codMensaje
+        @Positive
+        int codCuenta,
+        @Positive
+        int codPqrs,
+        @Positive
+        int codMensaje,
+        @NotBlank @Length(max = 500)
+        String mensaje
 ){
 }

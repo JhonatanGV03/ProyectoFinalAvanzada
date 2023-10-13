@@ -26,7 +26,7 @@ public class Cita implements Serializable {
     private LocalDateTime fechaCreacion;
     @Column(nullable = false)
     private LocalDateTime fechaCita;
-    @Column(nullable = false, length = 250)
+    @Column(nullable = false, length = 500)
     private String motivo;
 
     //Enums

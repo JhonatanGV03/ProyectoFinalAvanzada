@@ -21,7 +21,7 @@ public class Mensaje implements Serializable {
     //Atributos
     @Column(nullable = false)
     private LocalDateTime fechaCreacion;
-    @Column(nullable = false, length = 250)
+    @Column(nullable = false, length = 500)
     private String mensaje;
 
     //Relaciones

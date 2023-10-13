@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -25,10 +26,10 @@ import java.util.List;
 @Setter
 public class Paciente extends Usuario implements Serializable {
     //Atributos
-    @Column(nullable = false)
     @Past
-    private Date fechaNacimiento;
-    @Column(nullable = false, length = 150)
+    @Column(nullable = false)
+    private LocalDate fechaNacimiento;
+    @Column(nullable = false, length = 250)
     private String alegias;
 
     //Enums

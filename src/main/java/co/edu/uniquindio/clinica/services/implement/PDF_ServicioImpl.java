@@ -7,4 +7,9 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class PDF_ServicioImpl implements PDFServices {
+
+    @Override
+    public String generarPDF(String html) throws Exception {
+        return null;
+    }
 }

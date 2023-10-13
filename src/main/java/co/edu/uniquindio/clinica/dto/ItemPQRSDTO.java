@@ -1,20 +1,26 @@
 package co.edu.uniquindio.clinica.dto;
 
 import co.edu.uniquindio.clinica.model.enums.EstadoPQRS;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import org.hibernate.validator.constraints.Length;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /*
 REVISAR LOS ATRIBUTOS QUE VA A TENER ESTE ITEM
  */
 public record ItemPQRSDTO(
-        @NotNull
+        @Positive
         int codigo,  //Radicado
-        //String tipo,
+        @NotEmpty
+        LocalDateTime fecha,
         @NotNull
-        Date fecha,
-        @NotNull
-        EstadoPQRS estadoPQRS
+        EstadoPQRS estadoPQRS,
+        @NotBlank @Length(max = 100)
+        String nomPaciente
 ){
 }

@@ -1,6 +1,7 @@
 package co.edu.uniquindio.clinica;
 
 import co.edu.uniquindio.clinica.dto.HorarioDTO;
+import co.edu.uniquindio.clinica.dto.administrador.DetallesMedicoDTO;
 import co.edu.uniquindio.clinica.dto.administrador.ItemMedicoDTO;
 import co.edu.uniquindio.clinica.dto.administrador.RegistroMedicoDTO;
 import co.edu.uniquindio.clinica.model.classes.Medico;
@@ -31,15 +32,13 @@ public class AdministradorServiceTest {
         horarios.add(new HorarioDTO("LUNES", LocalTime.of(7, 0, 0), LocalTime.of(14, 0, 0)));
 
         RegistroMedicoDTO medicoDTO = new RegistroMedicoDTO(
-                1,
-                "54321",
                 "Paco Perez",
+                "54321",
                 Ciudad.ARMENIA,
-                "12345",
-                "78387",
-                "pepito@email.com",
                 Especialidad.CARDIOLOGIA,
-                EstadoUsuario.ACTIVO,
+                "12345",
+                "pepito@email.com",
+                "78387",
                 "url_foto",
                 horarios
         );
@@ -56,17 +55,15 @@ public class AdministradorServiceTest {
         List<HorarioDTO> horarios = new ArrayList<>();
         horarios.add(new HorarioDTO("LUNES", LocalTime.of(7, 0, 0), LocalTime.of(14, 0, 0)));
 
-        RegistroMedicoDTO medicoDTO = new RegistroMedicoDTO(
+        DetallesMedicoDTO medicoDTO = new DetallesMedicoDTO(
                 2,
-                "12345",
                 "Alejandro Hernandez",
-                Ciudad.ARMENIA,
                 "12345",
-                "78387",
-                "Hernan@email.com",
+                Ciudad.ARMENIA,
                 Especialidad.MEDICINA_GENERAL,
-                EstadoUsuario.ACTIVO,
-                "null",
+                "12345",
+                "Hernan@email.com",
+                "78387/img/imagen.jpg",
                 horarios
         );
         try {
