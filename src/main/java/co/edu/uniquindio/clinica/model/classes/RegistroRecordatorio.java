@@ -18,7 +18,6 @@ import java.time.LocalDateTime;
 public class RegistroRecordatorio implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, unique = true)
     private int codigoRecordatorio;
 
     //Atributos

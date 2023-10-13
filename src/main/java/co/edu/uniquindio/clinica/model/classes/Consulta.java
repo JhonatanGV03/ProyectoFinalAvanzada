@@ -16,11 +16,10 @@ import java.io.Serializable;
 public class Consulta implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, unique = true)
     private int codigoConsulta;
 
     //Atributos
-    @Column(nullable = false, length = 150)
+    @Column(nullable = false, length = 250)
     private String sintomas;
     @Column(nullable = false, length = 250)
     private String diagnostico;

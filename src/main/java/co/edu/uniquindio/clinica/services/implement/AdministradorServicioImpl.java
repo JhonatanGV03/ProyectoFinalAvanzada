@@ -257,7 +257,8 @@ public class AdministradorServicioImpl implements AdministradorServices {
             respuesta.add( new ItemCitaAdminDTO(
                     c.getCodigoCita(),
                     c.getEstado(),
-                    c.getFechaCreacion()
+                    c.getFechaCreacion(),
+                    c.getPaciente().getNombre()
             ) );
         }
 

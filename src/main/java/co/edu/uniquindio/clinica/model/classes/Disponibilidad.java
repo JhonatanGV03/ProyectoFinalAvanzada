@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @NoArgsConstructor
@@ -18,12 +17,11 @@ import java.util.Date;
 public class Disponibilidad  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, unique = true)
     private int codigoDisponibilidad;
 
     //Atributos
     @Column(nullable = false)
-    private LocalDateTime dia;
+    private LocalDate dia;
 
     //Relaciones
     @ManyToOne

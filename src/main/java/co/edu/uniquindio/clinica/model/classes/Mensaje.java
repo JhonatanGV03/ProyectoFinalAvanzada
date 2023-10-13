@@ -16,13 +16,12 @@ import java.time.LocalDateTime;
 public class Mensaje implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, unique = true)
     private int codigo;
 
     //Atributos
     @Column(nullable = false)
     private LocalDateTime fechaCreacion;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 250)
     private String mensaje;
 
     //Relaciones

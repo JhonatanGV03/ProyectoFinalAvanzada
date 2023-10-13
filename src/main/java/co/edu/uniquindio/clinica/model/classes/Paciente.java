@@ -6,6 +6,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Past;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,7 @@ import java.util.List;
 public class Paciente extends Usuario implements Serializable {
     //Atributos
     @Column(nullable = false)
+    @Past
     private Date fechaNacimiento;
     @Column(nullable = false, length = 150)
     private String alegias;

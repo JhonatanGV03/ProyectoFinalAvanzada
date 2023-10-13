@@ -20,14 +20,13 @@ public class Cita implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
     private int codigoCita;
     //Atributos
     @Column(nullable = false)
     private LocalDateTime fechaCreacion;
     @Column(nullable = false)
     private LocalDateTime fechaCita;
-    @Column(nullable = false, length = 150)
+    @Column(nullable = false, length = 250)
     private String motivo;
 
     //Enums

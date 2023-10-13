@@ -22,7 +22,7 @@ public class Usuario extends Cuenta implements Serializable {
     private String cedula;
     @Column(nullable = false, length = 40)
     private String nombre;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 10)
     private String telefono;
     @Column(nullable = false)
     private String urlFoto;

@@ -20,7 +20,6 @@ import java.util.List;
 public class PQRS implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, unique = true)
     private int codigo;
 
     //Atributos
