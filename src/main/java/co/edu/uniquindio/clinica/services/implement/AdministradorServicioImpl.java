@@ -250,7 +250,7 @@ public class AdministradorServicioImpl implements AdministradorServices {
                 buscado.getCita().getFechaCita(),
                 buscado.getCita().getEstado(),
                 buscado.getCita().getMotivo(),
-                buscado.getCita().getConsulta().getSintomas(),
+                buscado.getCita().getConsulta().getNotasMedicas(),
                 buscado.getCita().getConsulta().getDiagnostico(),
                 buscado.getCita().getConsulta().getTratamiento()
         );

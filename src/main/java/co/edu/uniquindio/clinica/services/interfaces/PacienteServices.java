@@ -5,6 +5,7 @@ import co.edu.uniquindio.clinica.dto.RegistroRespuestaDTO;
 import co.edu.uniquindio.clinica.dto.ItemPQRSDTO;
 import co.edu.uniquindio.clinica.dto.paciente.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface PacienteServices {
@@ -29,12 +30,12 @@ public interface PacienteServices {
 
     int responderPQRS(RegistroRespuestaDTO registroRespuestaDTO) throws Exception;
 
-    List<ItemCitaDTO> listarCitasPaciente() throws Exception;
+    List<ItemCitaDTO> listarCitasPaciente(int codigoPaciente) throws Exception;
 
     DetallesCitaDTO verDetalleCita(int codigo) throws Exception;
 
-    void filtrarCitasPorFecha();  //??
+    List<ItemCitaDTO> filtrarCitasPorFecha(LocalDate fecha) throws Exception;  //??
 
-    void filtrarCitasPorMedico();  //??
+    List<ItemCitaDTO> filtrarCitasPorMedico(int codigoMedico) throws Exception;  //??
 
 }

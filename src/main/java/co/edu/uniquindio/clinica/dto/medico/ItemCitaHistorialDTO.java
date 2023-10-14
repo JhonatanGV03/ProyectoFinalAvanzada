@@ -6,11 +6,11 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public record ItemCitaHistorialDTO( //Item cita del historial medico del paciente
         @NotEmpty
-        LocalDateTime fechaAtencion,
+        LocalDate fechaAtencion,
         @NotBlank @Length(max = 100)
         String nomMedico,
         @NotNull

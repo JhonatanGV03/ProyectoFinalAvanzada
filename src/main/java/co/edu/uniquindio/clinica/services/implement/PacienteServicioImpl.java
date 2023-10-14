@@ -1,21 +1,19 @@
 package co.edu.uniquindio.clinica.services.implement;
 
-import co.edu.uniquindio.clinica.dto.HorarioDTO;
 import co.edu.uniquindio.clinica.dto.ItemPQRSDTO;
 import co.edu.uniquindio.clinica.dto.NewPasswordDTO;
 import co.edu.uniquindio.clinica.dto.RegistroRespuestaDTO;
-import co.edu.uniquindio.clinica.dto.administrador.DetallesMedicoDTO;
 import co.edu.uniquindio.clinica.dto.paciente.*;
 import co.edu.uniquindio.clinica.model.classes.*;
 import co.edu.uniquindio.clinica.model.enums.EstadoCita;
 import co.edu.uniquindio.clinica.model.enums.EstadoPQRS;
 import co.edu.uniquindio.clinica.model.enums.EstadoUsuario;
-import co.edu.uniquindio.clinica.model.enums.TipoPQRS;
 import co.edu.uniquindio.clinica.repositories.*;
 import co.edu.uniquindio.clinica.services.interfaces.PacienteServices;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -239,28 +237,124 @@ public class PacienteServicioImpl implements PacienteServices {
 
     @Override
     public int responderPQRS(RegistroRespuestaDTO registroRespuesta) throws Exception {
-        return 0;
+        Optional<PQRS> opcionalPQRS = pqrsRepo.findById(registroRespuesta.codPqrs());
+
+        if(opcionalPQRS.isEmpty()){
+            throw new Exception("No existe un PQRS con el código "+registroRespuesta.codPqrs());
+        }
+
+        Optional<Cuenta> opcionalCuenta = cuentaRepo.findById(registroRespuesta.codCuenta());
+
+        if(opcionalCuenta.isEmpty()){
+            throw new Exception("No existe una cuenta con el código "+registroRespuesta.codCuenta());
+        }
+
+        Mensaje mensajeNuevo = new Mensaje();
+        mensajeNuevo.setPQRS(opcionalPQRS.get());
+        mensajeNuevo.setFechaCreacion( LocalDateTime.now() );
+        mensajeNuevo.setCuenta(opcionalCuenta.get());
+        mensajeNuevo.setMensaje(registroRespuesta.mensaje());
+
+        Mensaje respuesta = mensajeRepo.save(mensajeNuevo);
+
+        return respuesta.getCodigo();
     }
 
     @Override
-    public List<ItemCitaDTO> listarCitasPaciente() throws Exception {
-        return null;
+    public List<ItemCitaDTO> listarCitasPaciente(int codigoPaciente) throws Exception {
+        Optional<Paciente> opcional = pacienteRepo.findById(codigoPaciente);
+        List<Cita> citasPaciente = citaRepo.findAllByPaciente(opcional.get());
+        List<ItemCitaDTO> citas = new ArrayList<>();
+
+        if (citasPaciente == null){
+            throw new Exception("No existen citas para el paciente con código "+codigoPaciente);
+        }
+
+        for (Cita cita : citasPaciente){
+            citas.add(new ItemCitaDTO(
+                    cita.getCodigoCita(),
+                    cita.getFechaCita(),
+                    cita.getHoraCita(),
+                    cita.getMedico().getEspecialidad(),
+                    cita.getMedico().getNombre()
+            ));
+        }
+        return citas;
     }
 
     @Override
     public DetallesCitaDTO verDetalleCita(int codigo) throws Exception {
-        return null;
+        Optional<Cita> citaEncontrada = citaRepo.findById(codigo);
+
+        if(citaEncontrada.isEmpty()){
+            throw new Exception("No existe una cita con el código "+codigo);
+        }
+
+        Cita cita = citaEncontrada.get();
+
+        return new DetallesCitaDTO(
+                cita.getCodigoCita(),
+                cita.getPaciente().getNombre(),
+                cita.getFechaCreacion(),
+                cita.getFechaCita(),
+                cita.getHoraCita(),
+                cita.getEstado(),
+                cita.getMotivo(),
+                cita.getMedico().getNombre(),
+                cita.getMedico().getEspecialidad(),
+                cita.getConsulta().getNotasMedicas(),
+                cita.getConsulta().getDiagnostico(),
+                cita.getConsulta().getTratamiento()
+        );
     }
 
     @Override
-    public void filtrarCitasPorFecha() {
+    public List<ItemCitaDTO> filtrarCitasPorFecha(LocalDate fecha) throws Exception {
+        List<Cita> citasFecha = citaRepo.findAllByFechaCita(fecha);
 
+        if(citasFecha.isEmpty()){
+            throw new Exception("No hay citas por la fecha introducida");
+        }
+
+        List<ItemCitaDTO> citas = new ArrayList<>();
+
+        for(Cita c : citasFecha){
+            citas.add(new ItemCitaDTO(
+                    c.getCodigoCita(),
+                    c.getFechaCita(),
+                    c.getHoraCita(),
+                    c.getMedico().getEspecialidad(),
+                    c.getMedico().getNombre()
+            ));
+        }
+
+        return citas;
     }
 
     @Override
-    public void filtrarCitasPorMedico() {
+    public List<ItemCitaDTO> filtrarCitasPorMedico(int codigoMedico) throws Exception {
+        Optional<Medico> opcional = medicoRepo.findById(codigoMedico);
+        List<Cita> citasMedico = citaRepo.findAllByMedico(opcional.get());
 
+        if(citasMedico.isEmpty()){
+            throw new Exception("No hay citas por el medico introducido");
+        }
+
+        List<ItemCitaDTO> citas = new ArrayList<>();
+
+        for(Cita c : citasMedico){
+            citas.add(new ItemCitaDTO(
+                    c.getCodigoCita(),
+                    c.getFechaCita(),
+                    c.getHoraCita(),
+                    c.getMedico().getEspecialidad(),
+                    c.getMedico().getNombre()
+            ));
+        }
+
+        return citas;
     }
+
 
     private boolean estaRepetidaCedula(String cedula) {
         return pacienteRepo.findByCedula(cedula) != null;

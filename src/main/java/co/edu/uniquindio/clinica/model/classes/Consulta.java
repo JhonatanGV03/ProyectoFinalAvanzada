@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 @Entity
 @NoArgsConstructor
@@ -21,7 +20,7 @@ public class Consulta implements Serializable {
 
     //Atributos
     @Column(nullable = false, length = 500)
-    private String sintomas;
+    private String notasMedicas;
     @Column(nullable = false, length = 500)
     private String diagnostico;
     @Column(nullable = false, length = 500)
