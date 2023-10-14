@@ -8,7 +8,7 @@ BACKEND:
 - Codificar el servicio de paciente -J
 - Codificar el servicio de medico -A
 - Codificar el servicios externos -A
-- Modificar los servicios de admin en la parte de los arrays -A
+- Modificar los servicios de admin en la parte de los arrays LISTO
 - Crear los test de los servicios -Dos
 
 FRONTEND:
