@@ -24,7 +24,7 @@ public class PacienteServicioImpl implements PacienteServices {
     }
 
     @Override
-    public int editarPerfil(int codigo, RegistroPacienteDTO pacienteDTO) throws Exception {
+    public int editarPerfil(int codigo, DetallePacienteDTO pacienteDTO) throws Exception {
         return 0;
     }
 

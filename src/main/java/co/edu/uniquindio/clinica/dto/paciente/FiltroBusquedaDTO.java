@@ -1,4 +1,9 @@
 package co.edu.uniquindio.clinica.dto.paciente;
 
-public record FiltroBusquedaDTO() {
+import jakarta.validation.constraints.NotBlank;
+
+public record FiltroBusquedaDTO(
+        @NotBlank
+        String busqueda
+) {
 }
