@@ -7,15 +7,11 @@ import co.edu.uniquindio.clinica.model.enums.EstadoPQRS;
 import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.Length;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public record DetallesPQRSAdminDTO(
-        /*
-        En este dto no estoy seguro, osea si necesitamos toda esta info segun el muckup
-        pero si ve que se puede hacer de otra forma me dice y lo arreglo mejor
-         */
-
         //Seccion PQRS
         @Positive
         int codigo,
@@ -45,7 +41,7 @@ public record DetallesPQRSAdminDTO(
         @NotNull
         Especialidad especialidad,
         @NotEmpty
-        LocalDateTime fechaCita,
+        LocalDate fechaCita,
         @NotNull
         EstadoCita estadoCita,
         @NotBlank @Length(max = 500)

@@ -222,17 +222,18 @@ public class PacienteServicioImpl implements PacienteServices {
         }
 
         PQRS buscado = opcional.get();
-        List<Mensaje> mensajes = mensajeRepo.findAllByPqrsCodigo(codigo);
+        List<Mensaje> mensajes = mensajeRepo.findAllByCodigo(codigo);
 
         return new DetallesPQRSDTO(
                 buscado.getCodigo(),
                 buscado.getFechaCreacion(),
                 buscado.getEstado(),
                 buscado.getCita().getFechaCita(),
-                buscado.getMensajes().get(0),  //Esa pocision correponde al primer mensaje el cual es el motivo del pqrs
                 buscado.getCita().getMedico().getNombre(),
                 buscado.getCita().getMedico().getEspecialidad(),
-                buscado.
+                buscado.getMotivo(),
+                new ArrayList<>()
+                //Aun no se como traer la lista de mensajes
         );
     }
 

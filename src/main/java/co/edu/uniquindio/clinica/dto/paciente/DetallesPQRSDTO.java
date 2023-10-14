@@ -9,6 +9,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import org.hibernate.validator.constraints.Length;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public record DetallesPQRSDTO(
         @NotNull
         EstadoPQRS estadoPQRS,
         @NotEmpty
-        LocalDateTime fechaCita,  //Revisar si se usa String o LocalDateTime
+        LocalDate fechaCita,  //Revisar si se usa String o LocalDateTime
         @NotBlank @Length(max = 100)
         String nomMedico,
         @NotNull
