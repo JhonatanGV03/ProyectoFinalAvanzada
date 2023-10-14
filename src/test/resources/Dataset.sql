@@ -1,0 +1,1 @@
+insert into cuenta values (1, 'jdcc1@')

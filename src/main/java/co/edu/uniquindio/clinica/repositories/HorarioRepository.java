@@ -8,8 +8,6 @@ import java.util.List;
 
 @Repository
 public interface HorarioRepository extends JpaRepository<Horario, Integer> {
-
-
     List<Horario> findAllByMedicoCodigo(int codigo);
 
 }

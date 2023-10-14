@@ -1,8 +1,14 @@
 BACKEND:
-- Revisar los dtos de las interfaces
+- Revisar los dtos de las interfaces LISTO
 - Modificar los atributos de las fechas en el modelo LISTO
-- Modificar los atributos de los objetos en los dtos
+- Modificar los atributos de los objetos en los dtos LISTO
 - Cambiar los nombres de los atributos en el modelo (codigoPaciente, etc) LISTO
-- Crear el DTO correcto para registrarse como paciente (contraseña)
+- Crear el DTO correcto para registrarse como paciente (contraseña) LISTO
+- Crear el dataset -Externo
+- Codificar el servicio de paciente -J
+- Codificar el servicio de medico -A
+- Codificar el servicios externos -A
+- Modificar los servicios de admin en la parte de los arrays -A
+- Crear los test de los servicios -Dos
 
 FRONTEND:

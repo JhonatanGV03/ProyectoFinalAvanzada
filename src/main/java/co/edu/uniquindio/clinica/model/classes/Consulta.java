@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Entity
 @NoArgsConstructor
@@ -30,4 +31,5 @@ public class Consulta implements Serializable {
     @OneToOne
     @JoinColumn(nullable = false)
     private Cita cita;
+
 }

@@ -44,19 +44,19 @@ public class AdministradorServicioImpl implements AdministradorServices {
 
         Medico medico = new Medico();
 
-        medico.setNombre(medicoDTO.nombre() );
-        medico.setCedula(medicoDTO.cedula() );
+        medico.setNombre(medicoDTO.nombre());
+        medico.setCedula(medicoDTO.cedula());
         medico.setCiudad(medicoDTO.ciudad());
-        medico.setEspecialidad( medicoDTO.especialidad() );
+        medico.setEspecialidad(medicoDTO.especialidad());
         medico.setTelefono(medicoDTO.telefono());
-        medico.setCorreo(medicoDTO.correo() );
+        medico.setCorreo(medicoDTO.correo());
         medico.setPassword(medicoDTO.password());
         medico.setUrlFoto(medicoDTO.urlFoto());
         medico.setEstado(EstadoUsuario.ACTIVO);
 
         Medico medicoNuevo = medicoRepo.save(medico);
 
-        asignarHorariosMedico(medico, medicoDTO.horarios());
+        asignarHorariosMedico(medicoNuevo, medicoDTO.horarios());
 
         return medicoNuevo.getCodigo();
 
@@ -273,7 +273,7 @@ public class AdministradorServicioImpl implements AdministradorServices {
                     c.getEstado(),
                     c.getFechaCreacion(),
                     c.getPaciente().getNombre()
-            ) );
+            )  );
         }
 
         return respuesta;
@@ -293,51 +293,5 @@ public class AdministradorServicioImpl implements AdministradorServices {
 
         pqrsRepo.save( pqrs );
     }
-    /*
-    @Override
-    public List<ItemPQRSDTO> listarPQRS() throws Exception {
 
-        List<Pqrs> listaPqrs = pqrsRepo.findAll();
-        List<ItemPQRSDTO> respuesta = new ArrayList<>();
-
-        for( Pqrs p: listaPqrs ){
-
-            respuesta.add( new ItemPQRSDTO(
-                    p.getCodigo(),
-                    p.getEstado(),
-                    p.getMotivo(),
-                    p.getFechaCreacion(),
-                    p.getCita().getPaciente().getNombre()
-            ) );
-
-        }
-
-        return respuesta;
-    }
-
-    @Override
-    public DetallePQRSDTO verDetallePQRS(int codigo) throws Exception {
-
-        Optional<Pqrs> opcional = pqrsRepo.findById(codigo);
-
-        if(opcional.isEmpty()){
-            throw new Exception("No existe un PQRS con el código "+codigo);
-        }
-
-        Pqrs buscado = opcional.get();
-
-        return new DetallePQRSDTO(
-                buscado.getCodigo(),
-                buscado.getEstado(),
-                buscado.getMotivo(),
-                buscado.getCita().getPaciente().getNombre(),
-                buscado.getCita().getMedico().getNombre(),
-                buscado.getCita().getMedico().getEspecialidad(),
-                buscado.getFechaCreacion(),
-                new ArrayList<>()
-        );
-    }
-
-
-    */
 }
