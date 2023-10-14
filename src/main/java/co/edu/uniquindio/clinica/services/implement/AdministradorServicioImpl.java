@@ -40,7 +40,7 @@ public class AdministradorServicioImpl implements AdministradorServices {
         }
 
         if( estaRepetidoCorreo(medicoDTO.correo()) ){
-            throw new Exception("El correo "+medicoDTO.cedula()+" ya está en uso");
+            throw new Exception("El correo "+medicoDTO.correo()+" ya está en uso");
         }
 
         Medico medico = new Medico();

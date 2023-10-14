@@ -28,7 +28,7 @@ public class Paciente extends Usuario implements Serializable {
     @Column(nullable = false)
     private LocalDate fechaNacimiento;
     @Column(nullable = false, length = 250)
-    private String alegias;
+    private String alergias;
 
     //Enums
     private EPS EPS;

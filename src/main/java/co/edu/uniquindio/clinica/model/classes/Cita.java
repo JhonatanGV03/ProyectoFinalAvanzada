@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -25,7 +27,9 @@ public class Cita implements Serializable {
     @Column(nullable = false)
     private LocalDateTime fechaCreacion;
     @Column(nullable = false)
-    private LocalDateTime fechaCita;
+    private LocalDate fechaCita;
+    @Column(nullable = false)
+    private LocalTime horaCita;
     @Column(nullable = false, length = 500)
     private String motivo;
 

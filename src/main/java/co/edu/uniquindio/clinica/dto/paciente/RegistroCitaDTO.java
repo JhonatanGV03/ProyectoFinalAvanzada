@@ -11,6 +11,8 @@ import java.time.LocalTime;
 
 public record RegistroCitaDTO(
         @NotNull
+        int codigoPaciente,
+        @NotNull
         Especialidad especialidad,
         @NotBlank @Length(max = 100)
         String medico,

@@ -18,16 +18,16 @@ public interface PacienteServices {
 
     void enviarLinkRecuperacion(String email) throws Exception;
 
-    void cambiarPassword(NewPasswordDTO newPassword) throws Exception;
+    void cambiarPassword(NewPasswordDTO newPasswordDTO) throws Exception;
 
-    int agendarCita(RegistroCitaDTO registroCita) throws Exception;
+    int agendarCita(RegistroCitaDTO registroCitaDTO) throws Exception;
 
     int crearPQRS(RegistroPQRSDTO registroPQRSDTO) throws Exception;
 
     List<ItemPQRSDTO> listarPQRSPaciente(int codigoPaciente) throws Exception;
     DetallesPQRSDTO verDetallesPQRS(int codigo) throws Exception;
 
-    int responderPQRS(RegistroRespuestaDTO registroRespuesta) throws Exception;
+    int responderPQRS(RegistroRespuestaDTO registroRespuestaDTO) throws Exception;
 
     List<ItemCitaDTO> listarCitasPaciente() throws Exception;
 
