@@ -25,6 +25,8 @@ public class PQRS implements Serializable {
     //Atributos
     @Column(nullable = false)
     private LocalDateTime fechaCreacion;
+    @Column(nullable = false, length = 200)
+    private String motivo;
 
     //Enums
     private TipoPQRS tipoPQRS;

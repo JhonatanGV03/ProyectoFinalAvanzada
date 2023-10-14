@@ -7,8 +7,6 @@ import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 public record DetallePacienteDTO(
         @Positive

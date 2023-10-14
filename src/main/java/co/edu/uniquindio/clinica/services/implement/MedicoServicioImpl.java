@@ -12,6 +12,7 @@ import java.util.List;
 public class MedicoServicioImpl implements MedicoServices {
     @Override
     public List<ItemCitaMedicoDTO> listarCitasPendientes(int codigoMedico) throws Exception {
+
         return null;
     }
 

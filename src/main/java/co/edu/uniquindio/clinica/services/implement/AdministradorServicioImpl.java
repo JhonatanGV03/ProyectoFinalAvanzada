@@ -1,6 +1,7 @@
 package co.edu.uniquindio.clinica.services.implement;
 
 import co.edu.uniquindio.clinica.dto.HorarioDTO;
+import co.edu.uniquindio.clinica.dto.RespuestaDTO;
 import co.edu.uniquindio.clinica.dto.administrador.*;
 import co.edu.uniquindio.clinica.dto.ItemPQRSDTO;
 import co.edu.uniquindio.clinica.dto.RegistroRespuestaDTO;
@@ -143,9 +144,7 @@ public class AdministradorServicioImpl implements AdministradorServices {
 
         return respuesta;
     }
-    /*
-    -----    Buscar como retornar los horarios del medico tambien   ------
-     */
+
     @Override
     public DetallesMedicoDTO obtenerMedico(int codigo) throws Exception {
         Optional<Medico> opcional =medicoRepo.findById(codigo);
@@ -187,17 +186,18 @@ public class AdministradorServicioImpl implements AdministradorServices {
 
         for( PQRS p: listaPqrs ){
 
-            /*respuesta.add( new ItemPQRSDTO(
-                    p.getCodigoPQRS(),
-                    p.getEstado(),
+            respuesta.add( new ItemPQRSDTO(
+                    p.getCodigo(),
                     p.getFechaCreacion(),
+                    p.getEstado(),
                     p.getCita().getPaciente().getNombre()
-            ) );*/
+            ) );
 
         }
 
         return respuesta;
     }
+
 
     @Override
     public int responderPQRS(RegistroRespuestaDTO registroRespuesta) throws Exception {
@@ -213,26 +213,11 @@ public class AdministradorServicioImpl implements AdministradorServices {
             throw new Exception("No existe una cuenta con el código "+registroRespuesta.codCuenta());
         }
 
-        Mensaje referenciaMensaje = null;
-
-        if(registroRespuesta.codMensaje() != -1) {
-
-            Optional<Mensaje> opcionalMensaje = mensajeRepo.findById(registroRespuesta.codMensaje());
-
-            if (opcionalMensaje.isEmpty()) {
-                throw new Exception("No existe un mensaje con el código " + registroRespuesta.codMensaje());
-            }
-
-            referenciaMensaje = opcionalMensaje.get();
-
-        }
-
         Mensaje mensajeNuevo = new Mensaje();
         mensajeNuevo.setPQRS(opcionalPQRS.get());
         mensajeNuevo.setFechaCreacion( LocalDateTime.now() );
         mensajeNuevo.setCuenta(opcionalCuenta.get());
-        mensajeNuevo.setCodigo(registroRespuesta.codMensaje() );
-        mensajeNuevo.setMensajeInt( referenciaMensaje );
+        mensajeNuevo.setMensaje(registroRespuesta.mensaje());
 
         Mensaje respuesta = mensajeRepo.save(mensajeNuevo);
 
@@ -249,13 +234,35 @@ public class AdministradorServicioImpl implements AdministradorServices {
         }
 
         PQRS buscado = opcional.get();
+        List<Mensaje> mensajes = mensajeRepo.findAllByCodigo(codigo);
 
-        /*return new DetallesPQRSAdminDTO(
+        return new DetallesPQRSAdminDTO(
                 buscado.getCodigo(),
                 buscado.getEstado(),
-                //new ArrayList<>()
-        );*/
-        return null;
+                buscado.getFechaCreacion(),
+                buscado.getMotivo(),
+                convertirRespuestasDTO(mensajes),
+                buscado.getCita().getPaciente().getNombre(),
+                buscado.getCita().getPaciente().getCedula(),
+                buscado.getCita().getPaciente().getCorreo(),
+                buscado.getCita().getMedico().getNombre(),
+                buscado.getCita().getMedico().getEspecialidad(),
+                buscado.getCita().getFechaCita(),
+                buscado.getCita().getEstado(),
+                buscado.getCita().getMotivo(),
+                buscado.getCita().getConsulta().getSintomas(),
+                buscado.getCita().getConsulta().getDiagnostico(),
+                buscado.getCita().getConsulta().getTratamiento()
+        );
+    }
+
+    private List<RespuestaDTO> convertirRespuestasDTO(List<Mensaje> mensajes) {
+        return mensajes.stream().map(m -> new RespuestaDTO(
+                m.getCodigo(),
+                m.getMensaje(),
+                m.getCuenta().getCorreo(),
+                m.getFechaCreacion()
+        )).toList();
     }
 
     @Override
