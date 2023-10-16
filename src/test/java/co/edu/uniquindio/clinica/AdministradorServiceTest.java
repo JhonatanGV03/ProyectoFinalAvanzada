@@ -10,6 +10,7 @@ import co.edu.uniquindio.clinica.services.interfaces.AdministradorServices;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class AdministradorServiceTest {
     private AdministradorServices administradorServicio;
 
     @Test
+    @Sql("classpath:dataset.sql" )
     public void crearMedicoTest() {
 
         List<HorarioDTO> horarios = new ArrayList<>();
@@ -47,6 +49,7 @@ public class AdministradorServiceTest {
     }
 
     @Test
+    @Sql("classpath:dataset.sql" )
     public void actualizarMedicoTest() {
         List<HorarioDTO> horarios = new ArrayList<>();
         horarios.add(new HorarioDTO("LUNES", LocalTime.of(7, 0, 0), LocalTime.of(14, 0, 0)));
@@ -69,6 +72,7 @@ public class AdministradorServiceTest {
         }
     }
     @Test
+    @Sql("classpath:dataset.sql" )
     public void eliminarMedicoTest() {
         try {
             administradorServicio.eliminarmedico(2);
@@ -77,6 +81,7 @@ public class AdministradorServiceTest {
         }
     }
     @Test
+    @Sql("classpath:dataset.sql" )
     public void listarMedicosTest() {
         try {
             List<ItemMedicoDTO> medicos = administradorServicio.listarmedicos();
@@ -86,6 +91,7 @@ public class AdministradorServiceTest {
         }
     }
     @Test
+    @Sql("classpath:dataset.sql" )
     public void obtenerMedicoTest() {
         try {
             System.out.println(administradorServicio.obtenerMedico(1));

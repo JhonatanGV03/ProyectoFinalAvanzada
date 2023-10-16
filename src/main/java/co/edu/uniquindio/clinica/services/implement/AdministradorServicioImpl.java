@@ -30,6 +30,25 @@ public class AdministradorServicioImpl implements AdministradorServices {
     private final MensajeRepository mensajeRepo;
     private final CitaRepository citaRepo;
     private final HorarioRepository horarioRepo;
+    private final AdministradorRepository administradorRepo;
+
+
+    @Override
+    public void crearAdmin(RegistroAdminDTO admin) throws Exception {
+
+        if( estaRepetidoCorreoAdmin(admin.correo()) ){
+            throw new Exception("El correo "+admin.correo()+" ya está en uso");
+        }
+        Administrador administrador = new Administrador();
+        administrador.setCorreo(admin.correo());
+        administrador.setPassword(admin.password());
+
+        administradorRepo.save(administrador);
+
+    }
+    private boolean estaRepetidoCorreoAdmin(String correo) {
+        return administradorRepo.findByCorreo(correo) != null;
+    }
 
 
     @Override

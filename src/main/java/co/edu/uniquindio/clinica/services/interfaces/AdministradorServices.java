@@ -8,6 +8,8 @@ import co.edu.uniquindio.clinica.model.enums.EstadoPQRS;
 import java.util.List;
 
 public interface AdministradorServices {
+
+    void crearAdmin(RegistroAdminDTO admin) throws Exception;
     int crearMedico(RegistroMedicoDTO medico) throws Exception;
 
     int actualizarmedico(DetallesMedicoDTO medicoDTO) throws Exception;
