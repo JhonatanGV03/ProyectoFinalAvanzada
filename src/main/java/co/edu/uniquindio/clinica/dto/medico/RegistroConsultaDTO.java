@@ -1,6 +1,7 @@
 package co.edu.uniquindio.clinica.dto.medico;
 
 import co.edu.uniquindio.clinica.model.enums.EPS;
+import co.edu.uniquindio.clinica.model.enums.EstadoCita;
 import co.edu.uniquindio.clinica.model.enums.TipoSangre;
 import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.Length;
@@ -21,6 +22,8 @@ public record RegistroConsultaDTO(
         String tratamientoMedico,
         @NotBlank @Length(max = 500)
         String motivoConsulta,
+        @NotNull
+        EstadoCita estadoCita,
 
 
         //Datos Paciente

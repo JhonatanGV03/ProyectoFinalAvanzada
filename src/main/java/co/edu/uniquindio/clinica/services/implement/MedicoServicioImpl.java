@@ -1,10 +1,7 @@
 package co.edu.uniquindio.clinica.services.implement;
 
 import co.edu.uniquindio.clinica.dto.medico.*;
-import co.edu.uniquindio.clinica.model.classes.Cita;
-import co.edu.uniquindio.clinica.model.classes.Disponibilidad;
-import co.edu.uniquindio.clinica.model.classes.Medico;
-import co.edu.uniquindio.clinica.model.classes.Paciente;
+import co.edu.uniquindio.clinica.model.classes.*;
 import co.edu.uniquindio.clinica.model.enums.EstadoCita;
 import co.edu.uniquindio.clinica.repositories.*;
 import co.edu.uniquindio.clinica.services.interfaces.MedicoServices;
@@ -22,6 +19,7 @@ public class MedicoServicioImpl implements MedicoServices {
 
     private final MedicoRepository medicoRepo;
     private final CitaRepository citaRepo;
+    private final ConsultaRepository consultaRepo;
     private final DisponibilidadRepository disponibilidadRepo;
     private final HorarioRepository horarioRepo;
     private final PacienteRepository pacienteRepo;
@@ -55,8 +53,46 @@ public class MedicoServicioImpl implements MedicoServices {
 /*
     Falta por programar
  */
+
     @Override
     public void atenderCita(RegistroConsultaDTO atencionMedica) throws Exception {
+
+        Cita cita = citaRepo.findById(atencionMedica.codigoAtencion()).orElseThrow( () -> new Exception("No existe la cita") );
+
+        cita.setEstado(atencionMedica.estadoCita());
+
+        Consulta consulta = new Consulta();
+        //Creo que no sirve para nada//consulta.setCodigoConsulta(1);
+        consulta.setDiagnostico(atencionMedica.diagnosticoMedico());
+        consulta.setNotasMedicas(atencionMedica.notasMedico());
+        consulta.setTratamiento(atencionMedica.tratamientoMedico());
+        consulta.setCita(cita);
+
+
+        consultaRepo.save(consulta);
+        citaRepo.save(cita);
+
+    }
+
+    public RegistroConsultaDTO cargarRegistro(int codigoCita) throws Exception {
+
+        Cita cita = citaRepo.findById(codigoCita).orElseThrow( () -> new Exception("No existe la cita") );
+
+        return new RegistroConsultaDTO(
+                cita.getCodigoCita(),
+                cita.getFechaCita().atTime(cita.getHoraCita()),
+                "",
+                "",
+                "",
+                cita.getMotivo(),
+                cita.getEstado(),
+                cita.getPaciente().getCedula(),
+                cita.getPaciente().getNombre(),
+                cita.getPaciente().getCorreo(),
+                cita.getPaciente().getEPS(),
+                cita.getPaciente().getTipoSangre(),
+                cita.getPaciente().getAlergias()
+        );
 
     }
 

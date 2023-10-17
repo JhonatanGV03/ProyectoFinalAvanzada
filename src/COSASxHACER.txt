@@ -4,11 +4,12 @@ BACKEND:
 - Modificar los atributos de los objetos en los dtos LISTO
 - Cambiar los nombres de los atributos en el modelo (codigoPaciente, etc) LISTO
 - Crear el DTO correcto para registrarse como paciente (contraseña) LISTO
-- Crear el dataset -Externo
-- Codificar el servicio de paciente -J
-- Codificar el servicio de medico -A
-- Codificar el servicios externos -A
+- Crear el dataset LISTO
+- Codificar el servicio de paciente LISTO
+- Codificar el servicio de medico FALTA UNO
+- Codificar el servicios externos LISTO
 - Modificar los servicios de admin en la parte de los arrays LISTO
 - Crear los test de los servicios -Dos
+-Revisar los metodos de recodatorio de citas
 
 FRONTEND:
