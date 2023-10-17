@@ -9,15 +9,13 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDate;
 import java.util.List;
 
-import java.util.List;
-
 @Repository
 public interface CitaRepository extends JpaRepository<Cita, Integer> {
 
+    //Esta pendiente de revision en la bases de datos
     List<Cita> findAllByPaciente(Paciente paciente);
-
-    List<Cita> findAllByFechaCita(LocalDate fecha);
-
     List<Cita> findAllByMedico(Medico medico);
+    List<Cita> findAllByFechaCita(LocalDate fecha);
+    List<Cita> findAllByFechaCitaAndMedico(LocalDate fecha, Medico medico);
 
 }

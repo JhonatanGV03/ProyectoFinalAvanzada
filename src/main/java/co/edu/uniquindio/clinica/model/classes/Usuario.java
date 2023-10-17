@@ -24,6 +24,7 @@ public class Usuario extends Cuenta implements Serializable {
     private String nombre;
     @Column(nullable = false, length = 10)
     private String telefono;
+    //@ElementCollection //Tengo mis dudas con esto
     @Column(nullable = false)
     private String urlFoto;
 

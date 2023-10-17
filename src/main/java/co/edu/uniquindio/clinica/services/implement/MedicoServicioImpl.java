@@ -1,8 +1,8 @@
 package co.edu.uniquindio.clinica.services.implement;
 
-import co.edu.uniquindio.clinica.dto.administrador.ItemCitaAdminDTO;
 import co.edu.uniquindio.clinica.dto.medico.*;
 import co.edu.uniquindio.clinica.model.classes.Cita;
+import co.edu.uniquindio.clinica.model.classes.Disponibilidad;
 import co.edu.uniquindio.clinica.model.classes.Medico;
 import co.edu.uniquindio.clinica.model.classes.Paciente;
 import co.edu.uniquindio.clinica.model.enums.EstadoCita;
@@ -11,8 +11,10 @@ import co.edu.uniquindio.clinica.services.interfaces.MedicoServices;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -26,7 +28,7 @@ public class MedicoServicioImpl implements MedicoServices {
 
 
     @Override
-    public List<ItemCitaMedicoDTO> listarCitasPendientes(int codigoMedico) throws Exception {
+    public List<ItemCitaMedicoDTO> listarCitasPendientes(int codigoMedico, LocalDate dia) throws Exception {
 
         Medico medico = medicoRepo.findById(codigoMedico).orElseThrow( () -> new Exception("No existe el medico") );
         List<Cita> citas = citaRepo.findAllByMedico(medico);
@@ -37,7 +39,7 @@ public class MedicoServicioImpl implements MedicoServices {
         }
 
         for( Cita c : citas ){
-            if(c.getEstado().equals(EstadoCita.PROGRAMADA) ){
+            if(c.getEstado().equals(EstadoCita.PROGRAMADA) && c.getFechaCita().equals(dia)){
                 respuesta.add( new ItemCitaMedicoDTO(
                         c.getPaciente().getNombre(),
                         c.getFechaCita(),
@@ -51,7 +53,7 @@ public class MedicoServicioImpl implements MedicoServices {
 
     }
 /*
-
+    Falta por programar
  */
     @Override
     public void atenderCita(RegistroConsultaDTO atencionMedica) throws Exception {
@@ -85,12 +87,41 @@ public class MedicoServicioImpl implements MedicoServices {
 
  */
     @Override
-    public int agendarDiaLibre(DiaLibreDTO diaLibreDTO) throws Exception {
-        return 0;
+    public int agendarDiaLibre(DiaLibreDTO diaLibreDTO, int codigoMedico) throws Exception {
+
+        Optional<Medico> medico = medicoRepo.findById(codigoMedico);
+        if(medico.isEmpty()){
+            throw new Exception("No existe el medico");
+        }
+        List<Disponibilidad> disponibilidades = disponibilidadRepo.findAllByMedico(medico.get());
+
+        List<Cita> citas = citaRepo.findAllByMedico(medico.get());
+
+        for( Cita c : citas ){
+            if(c.getFechaCita().equals(diaLibreDTO.fecha())){
+                throw new Exception("Ya existe una cita para ese dia");
+            }
+        }
+
+        for( Disponibilidad d : disponibilidades ){
+            if(d.getDia().equals(diaLibreDTO.fecha()) || d.getDia().isAfter(LocalDate.now())){
+                throw new Exception("Ya existe una disponibilidad agendada para el medico");
+            }
+        }
+
+        Disponibilidad disponibilidad = new Disponibilidad();
+        disponibilidad.setDia(diaLibreDTO.fecha());
+        disponibilidad.setMedico(medico.get());
+
+        disponibilidadRepo.save(disponibilidad);
+
+        return disponibilidad.getCodigoDisponibilidad();
+
     }
 
     @Override
     public List<ItemCitaRealizadaDTO> listarCitasRealizadasMedico(int codigoMedico) throws Exception {
+
         Medico medico = medicoRepo.findById(codigoMedico).orElseThrow( () -> new Exception("No existe el medico") );
         List<Cita> citas = citaRepo.findAllByMedico(medico);
         List<ItemCitaRealizadaDTO> respuesta = new ArrayList<>();
@@ -100,7 +131,7 @@ public class MedicoServicioImpl implements MedicoServices {
         }
 
         for( Cita c : citas ){
-            if(c.getEstado().equals(EstadoCita.COMPLETADA) ){
+            if(c.getEstado().equals(EstadoCita.COMPLETADA) || c.getEstado().equals(EstadoCita.CANCELADA) ){
                 respuesta.add( new ItemCitaRealizadaDTO(
                         c.getFechaCita(),
                         c.getHoraCita(),

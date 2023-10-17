@@ -7,6 +7,7 @@ import co.edu.uniquindio.clinica.dto.administrador.RegistroMedicoDTO;
 import co.edu.uniquindio.clinica.model.enums.Ciudad;
 import co.edu.uniquindio.clinica.model.enums.Especialidad;
 import co.edu.uniquindio.clinica.services.interfaces.AdministradorServices;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
+@Transactional
 public class AdministradorServiceTest {
 
     @Autowired
@@ -63,6 +65,7 @@ public class AdministradorServiceTest {
                 "12345",
                 "Hernan@email.com",
                 "78387/img/imagen.jpg",
+                "123",
                 horarios
         );
         try {

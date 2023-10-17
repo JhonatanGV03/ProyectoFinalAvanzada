@@ -12,6 +12,7 @@ import co.edu.uniquindio.clinica.model.enums.EstadoUsuario;
 import co.edu.uniquindio.clinica.repositories.*;
 import co.edu.uniquindio.clinica.services.interfaces.AdministradorServices;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -36,12 +37,20 @@ public class AdministradorServicioImpl implements AdministradorServices {
     @Override
     public void crearAdmin(RegistroAdminDTO admin) throws Exception {
 
+
         if( estaRepetidoCorreoAdmin(admin.correo()) ){
             throw new Exception("El correo "+admin.correo()+" ya está en uso");
         }
         Administrador administrador = new Administrador();
+
         administrador.setCorreo(admin.correo());
-        administrador.setPassword(admin.password());
+        //Parte de encriptado
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String passwordEncriptada = passwordEncoder.encode( admin.password() );
+        administrador.setPassword( passwordEncriptada );
+
+
+        //administrador.setPassword(admin.password());
 
         administradorRepo.save(administrador);
 
@@ -49,7 +58,6 @@ public class AdministradorServicioImpl implements AdministradorServices {
     private boolean estaRepetidoCorreoAdmin(String correo) {
         return administradorRepo.findByCorreo(correo) != null;
     }
-
 
     @Override
     public int crearMedico(RegistroMedicoDTO medicoDTO) throws Exception {
@@ -70,9 +78,14 @@ public class AdministradorServicioImpl implements AdministradorServices {
         medico.setEspecialidad(medicoDTO.especialidad());
         medico.setTelefono(medicoDTO.telefono());
         medico.setCorreo(medicoDTO.correo());
-        medico.setPassword(medicoDTO.password());
+        //medico.setPassword(medicoDTO.password());
         medico.setUrlFoto(medicoDTO.urlFoto());
         medico.setEstado(EstadoUsuario.ACTIVO);
+
+        //Parte de encriptado
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String passwordEncriptada = passwordEncoder.encode( medicoDTO.password() );
+        medico.setPassword( passwordEncriptada );
 
         Medico medicoNuevo = medicoRepo.save(medico);
 
@@ -124,7 +137,15 @@ public class AdministradorServicioImpl implements AdministradorServices {
         buscado.setEspecialidad( medicoDTO.especialidad() );
         buscado.setTelefono(medicoDTO.telefono());
         buscado.setCorreo(medicoDTO.correo() );
+        //buscado.setPassword(medicoDTO.password());
         buscado.setUrlFoto(medicoDTO.urlFoto());
+
+        //Parte de encriptado
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String passwordEncriptada = passwordEncoder.encode( medicoDTO.password() );
+        buscado.setPassword( passwordEncriptada );
+
+        asignarHorariosMedico(buscado,medicoDTO.horario_dto());
 
         medicoRepo.save( buscado );
 
@@ -193,6 +214,7 @@ public class AdministradorServicioImpl implements AdministradorServices {
                 buscado.getTelefono(),
                 buscado.getCorreo(),
                 buscado.getUrlFoto(),
+                buscado.getPassword(),
                 horariosDTO
         );
     }

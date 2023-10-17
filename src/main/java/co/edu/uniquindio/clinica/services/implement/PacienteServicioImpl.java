@@ -11,6 +11,7 @@ import co.edu.uniquindio.clinica.model.enums.EstadoUsuario;
 import co.edu.uniquindio.clinica.repositories.*;
 import co.edu.uniquindio.clinica.services.interfaces.PacienteServices;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -54,6 +55,11 @@ public class PacienteServicioImpl implements PacienteServices {
         paciente.setTipoSangre(pacienteDTO.tipoSangre());
         paciente.setUrlFoto(pacienteDTO.urlFoto());
 
+        //Parte de encriptado
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String passwordEncriptada = passwordEncoder.encode( pacienteDTO.password() );
+        paciente.setPassword( passwordEncriptada );
+
         Paciente pacienteNuevo = pacienteRepo.save(paciente);
 
         return pacienteNuevo.getCodigo();
@@ -68,6 +74,7 @@ public class PacienteServicioImpl implements PacienteServices {
         }
 
         Paciente buscado = opcional.get();
+
 
         return new DetallePacienteDTO(
                 buscado.getCodigo(),
@@ -96,7 +103,7 @@ public class PacienteServicioImpl implements PacienteServices {
         Paciente buscado = opcional.get();
         buscado.setCedula(pacienteDTO.cedula());
         buscado.setCorreo(pacienteDTO.correo());
-        buscado.setPassword(pacienteDTO.password());
+        //buscado.setPassword(pacienteDTO.password());
         buscado.setNombre(pacienteDTO.nombre());
         buscado.setTelefono(pacienteDTO.telefono());
         buscado.setCiudad(pacienteDTO.ciudad());
@@ -105,6 +112,11 @@ public class PacienteServicioImpl implements PacienteServices {
         buscado.setEPS(pacienteDTO.eps());
         buscado.setTipoSangre(pacienteDTO.tipoSangre());
         buscado.setUrlFoto(pacienteDTO.urlFoto());
+
+        //Parte de encriptado
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String passwordEncriptada = passwordEncoder.encode( pacienteDTO.password() );
+        buscado.setPassword( passwordEncriptada );
 
         pacienteRepo.save( buscado );
 
@@ -262,8 +274,9 @@ public class PacienteServicioImpl implements PacienteServices {
 
     @Override
     public List<ItemCitaDTO> listarCitasPaciente(int codigoPaciente) throws Exception {
+        Paciente paciente = pacienteRepo.findById(codigoPaciente).orElseThrow( () -> new Exception("No existe el paciente") );
         Optional<Paciente> opcional = pacienteRepo.findById(codigoPaciente);
-        List<Cita> citasPaciente = citaRepo.findAllByPaciente(opcional.get());
+        List<Cita> citasPaciente = citaRepo.findAllByPaciente(paciente);
         List<ItemCitaDTO> citas = new ArrayList<>();
 
         if (citasPaciente == null){
@@ -333,8 +346,9 @@ public class PacienteServicioImpl implements PacienteServices {
 
     @Override
     public List<ItemCitaDTO> filtrarCitasPorMedico(int codigoMedico) throws Exception {
-        Optional<Medico> opcional = medicoRepo.findById(codigoMedico);
-        List<Cita> citasMedico = citaRepo.findAllByMedico(opcional.get());
+        Medico medico = medicoRepo.findById(codigoMedico).orElseThrow( () -> new Exception("No existe el medico") );
+        //ptional<Medico> opcional = medicoRepo.findById(codigoMedico);
+        List<Cita> citasMedico = citaRepo.findAllByMedico(medico);
 
         if(citasMedico.isEmpty()){
             throw new Exception("No hay citas por el medico introducido");
