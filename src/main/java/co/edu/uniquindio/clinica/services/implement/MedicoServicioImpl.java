@@ -37,7 +37,7 @@ public class MedicoServicioImpl implements MedicoServices {
         }
 
         for( Cita c : citas ){
-            if(c.getEstado().equals(EstadoCita.PROGRAMADA) && c.getFechaCita().equals(dia)){
+            if(c.getFechaCita().equals(dia) && c.getEstado().equals(EstadoCita.PROGRAMADA)){
                 respuesta.add( new ItemCitaMedicoDTO(
                         c.getPaciente().getNombre(),
                         c.getFechaCita(),
@@ -46,6 +46,8 @@ public class MedicoServicioImpl implements MedicoServices {
                 )  );
             }
         }
+
+
 
         return respuesta;
 
@@ -150,7 +152,6 @@ public class MedicoServicioImpl implements MedicoServices {
         disponibilidad.setMedico(medico.get());
 
         disponibilidadRepo.save(disponibilidad);
-
         return disponibilidad.getCodigoDisponibilidad();
 
     }

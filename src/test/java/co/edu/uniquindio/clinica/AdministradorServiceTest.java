@@ -1,13 +1,15 @@
 package co.edu.uniquindio.clinica;
 
 import co.edu.uniquindio.clinica.dto.HorarioDTO;
-import co.edu.uniquindio.clinica.dto.administrador.DetallesMedicoDTO;
-import co.edu.uniquindio.clinica.dto.administrador.ItemMedicoDTO;
-import co.edu.uniquindio.clinica.dto.administrador.RegistroMedicoDTO;
+import co.edu.uniquindio.clinica.dto.ItemPQRSDTO;
+import co.edu.uniquindio.clinica.dto.RegistroRespuestaDTO;
+import co.edu.uniquindio.clinica.dto.administrador.*;
 import co.edu.uniquindio.clinica.model.enums.Ciudad;
 import co.edu.uniquindio.clinica.model.enums.Especialidad;
+import co.edu.uniquindio.clinica.model.enums.EstadoPQRS;
 import co.edu.uniquindio.clinica.services.interfaces.AdministradorServices;
 import jakarta.transaction.Transactional;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -43,7 +45,8 @@ public class AdministradorServiceTest {
                 horarios
         );
         try {
-            administradorServicio.crearMedico(medicoDTO);
+            int codigo = administradorServicio.crearMedico(medicoDTO);
+            Assertions.assertNotEquals(0, codigo);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -57,7 +60,7 @@ public class AdministradorServiceTest {
         horarios.add(new HorarioDTO("LUNES", LocalTime.of(7, 0, 0), LocalTime.of(14, 0, 0)));
 
         DetallesMedicoDTO medicoDTO = new DetallesMedicoDTO(
-                2,
+                8,
                 "Alejandro Hernandez",
                 "12345",
                 Ciudad.ARMENIA,
@@ -70,6 +73,7 @@ public class AdministradorServiceTest {
         );
         try {
             administradorServicio.actualizarmedico(medicoDTO);
+            Assertions.assertNotEquals(0, medicoDTO.codigo());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -78,7 +82,7 @@ public class AdministradorServiceTest {
     @Sql("classpath:dataset.sql" )
     public void eliminarMedicoTest() {
         try {
-            administradorServicio.eliminarmedico(2);
+            administradorServicio.eliminarmedico(8);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -89,6 +93,7 @@ public class AdministradorServiceTest {
         try {
             List<ItemMedicoDTO> medicos = administradorServicio.listarmedicos();
             System.out.println(medicos.toString());
+            Assertions.assertNotEquals(0, medicos.size()); // Verifica que la lista no este vacia.
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -97,7 +102,85 @@ public class AdministradorServiceTest {
     @Sql("classpath:dataset.sql" )
     public void obtenerMedicoTest() {
         try {
-            System.out.println(administradorServicio.obtenerMedico(1));
+            DetallesMedicoDTO medico = administradorServicio.obtenerMedico(9);
+            System.out.println(medico.toString());
+            Assertions.assertEquals(9, medico.codigo()); // Verifica que la lista no este vacia.
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql" )
+    public void listarPQRSTest() {
+        try {
+            List<ItemPQRSDTO> medicos = administradorServicio.listarPQRS();
+            System.out.println(medicos.toString());
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql" )
+    public void responderPQRSTest() {
+        RegistroRespuestaDTO respuesta = new RegistroRespuestaDTO(
+                1,
+                6,
+                5,
+                "respuesta"
+        );
+
+
+        try {
+            int codigo = administradorServicio.responderPQRS(respuesta);
+            Assertions.assertNotNull(codigo);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql" )
+    public void verDetallesPQRSTest() {
+        try {
+            DetallesPQRSAdminDTO pqrs = administradorServicio.verDetallesPQRS(2);
+            System.out.println(pqrs.toString());
+            Assertions.assertNotEquals(null, pqrs);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql" )
+    public void cambiarEstadoPQRSTest() {
+        try {
+            //Ver el estado inicial de la pqrs
+            DetallesPQRSAdminDTO pqrsi = administradorServicio.verDetallesPQRS(2);
+            System.out.println(pqrsi.toString());
+
+            administradorServicio.cambiarEstadoPQRS(2, EstadoPQRS.RESUELTO);
+
+            //Ver el estado final de la pqrs
+            DetallesPQRSAdminDTO pqrs = administradorServicio.verDetallesPQRS(2);
+            System.out.println(pqrs.toString());
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql" )
+    public void listarCitasTest() {
+        try {
+            List<ItemCitaAdminDTO> citas = administradorServicio.listarCitas();
+            System.out.println(citas.toString());
+            Assertions.assertNotEquals(0, citas.size()); // Verifica que la lista no este vacia.
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

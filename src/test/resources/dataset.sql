@@ -50,7 +50,7 @@ insert into registro_recordatorio values(5, 1, '2023-10-26');
 insert into registro_recordatorio values(6, 0, '2023-10-26');
 
 insert into cita values(1, 0, '2023-10-22', '2023-10-15', '11:00:00', 'Motivo1', 9, 3, 1);
-insert into cita values(2, 1, '2023-10-23', '2023-10-16', '11:00:00', 'Motivo2', 8, 6, 2);
+insert into cita values(2, 0, '2023-10-23', '2023-10-16', '11:00:00', 'Motivo2', 8, 6, 2);
 insert into cita values(3, 2, '2023-10-24', '2023-10-17', '11:00:00', 'Motivo3', 10, 4, 3);
 insert into cita values(4, 1, '2023-10-25', '2023-10-18', '11:00:00', 'Motivo4', 11, 5, 4);
 insert into cita values(5, 0, '2023-10-26', '2023-10-19', '11:00:00', 'Motivo5', 12, 7, 5);
@@ -67,6 +67,8 @@ insert into pqrs values(2, 1, '2023-10-23','Motivo2', 1, 2);
 insert into pqrs values(3, 2, '2023-10-24','Motivo3', 2, 3);
 insert into pqrs values(4, 3, '2023-10-25','Motivo4', 3, 4);
 insert into pqrs values(5, 1, '2023-10-26','Motivo5', 0, 5);
+insert into pqrs values(6, 1, '2023-10-26','Motivo5', 0, 6);
+
 
 insert into mensaje values(1, '2023-10-20','Mensaje1', 1, 1, 1);
 insert into mensaje values(2, '2023-10-21','Mensaje2', 2, 1, 2);

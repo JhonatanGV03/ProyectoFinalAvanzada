@@ -6,10 +6,10 @@ BACKEND:
 - Crear el DTO correcto para registrarse como paciente (contraseña) LISTO
 - Crear el dataset LISTO
 - Codificar el servicio de paciente LISTO
-- Codificar el servicio de medico FALTA UNO
+- Codificar el servicio de medico LISTO
 - Codificar el servicios externos LISTO
 - Modificar los servicios de admin en la parte de los arrays LISTO
-- Crear los test de los servicios -Dos
+- Crear los test de los servicios - Falta los de paciente y externos
 -Revisar los metodos de recodatorio de citas
 
 FRONTEND:

@@ -223,6 +223,11 @@ public class AdministradorServicioImpl implements AdministradorServices {
     public List<ItemPQRSDTO> listarPQRS() throws Exception {
 
         List<PQRS> listaPqrs = pqrsRepo.findAll();
+
+        if(listaPqrs.isEmpty()){
+            throw new Exception("No existen PQRS creados");
+        }
+
         List<ItemPQRSDTO> respuesta = new ArrayList<>();
 
         for( PQRS p: listaPqrs ){
