@@ -1,27 +1,27 @@
-insert into cuenta values(1, 'admin1@gmail.com', '123');
-insert into cuenta values(2, 'admin2@gmail.com', '234');
-insert into cuenta values(3, 'paciente1@gmail.com', '123');
-insert into cuenta values(4, 'paciente2@gmail.com', '456');
-insert into cuenta values(5, 'paciente3@gmail.com', '789');
-insert into cuenta values(6, 'paciente4@gmail.com', '987');
-insert into cuenta values(7, 'paciente5@gmail.com', '654');
-insert into cuenta values(8, 'medico1@gmail.com', '123');
-insert into cuenta values(9, 'medico2@gmail.com', '456');
-insert into cuenta values(10, 'medico3@gmail.com', '789');
-insert into cuenta values(11, 'medico4@gmail.com', '987');
-insert into cuenta values(12, 'medico5@gmail.com', '654');
-insert into cuenta values(13, 'paciente6@gmail,com', '123');
-insert into cuenta values(14, 'medico6@gmail,com', '123');
+insert into cuenta values(1, 'admin1@gmail.com', '$2a$10$l1.STX20K90ekS3.Duf8OevSIJeUd9zZe/0ltF4Ag6LAJ.1P4gWlm');
+insert into cuenta values(2, 'admin2@gmail.com', '$2a$10$l1.STX20K90ekS3.Duf8OevSIJeUd9zZe/0ltF4Ag6LAJ.1P4gWlm');
+insert into cuenta values(3, 'paciente1@gmail.com', '$2a$10$l1.STX20K90ekS3.Duf8OevSIJeUd9zZe/0ltF4Ag6LAJ.1P4gWlm');
+insert into cuenta values(4, 'paciente2@gmail.com', '$2a$10$l1.STX20K90ekS3.Duf8OevSIJeUd9zZe/0ltF4Ag6LAJ.1P4gWlm');
+insert into cuenta values(5, 'paciente3@gmail.com', '$2a$10$l1.STX20K90ekS3.Duf8OevSIJeUd9zZe/0ltF4Ag6LAJ.1P4gWlm');
+insert into cuenta values(6, 'paciente4@gmail.com', '$2a$10$l1.STX20K90ekS3.Duf8OevSIJeUd9zZe/0ltF4Ag6LAJ.1P4gWlm');
+insert into cuenta values(7, 'paciente5@gmail.com', '$2a$10$l1.STX20K90ekS3.Duf8OevSIJeUd9zZe/0ltF4Ag6LAJ.1P4gWlm');
+insert into cuenta values(8, 'medico1@gmail.com', '$2a$10$l1.STX20K90ekS3.Duf8OevSIJeUd9zZe/0ltF4Ag6LAJ.1P4gWlm');
+insert into cuenta values(9, 'medico2@gmail.com', '$2a$10$l1.STX20K90ekS3.Duf8OevSIJeUd9zZe/0ltF4Ag6LAJ.1P4gWlm');
+insert into cuenta values(10, 'medico3@gmail.com', '$2a$10$l1.STX20K90ekS3.Duf8OevSIJeUd9zZe/0ltF4Ag6LAJ.1P4gWlm');
+insert into cuenta values(11, 'medico4@gmail.com', '$2a$10$l1.STX20K90ekS3.Duf8OevSIJeUd9zZe/0ltF4Ag6LAJ.1P4gWlm');
+insert into cuenta values(12, 'medico5@gmail.com', '$2a$10$l1.STX20K90ekS3.Duf8OevSIJeUd9zZe/0ltF4Ag6LAJ.1P4gWlm');
+insert into cuenta values(13, 'paciente6@gmail,com', '$2a$10$l1.STX20K90ekS3.Duf8OevSIJeUd9zZe/0ltF4Ag6LAJ.1P4gWlm');
+insert into cuenta values(14, 'medico6@gmail,com', '$2a$10$l1.STX20K90ekS3.Duf8OevSIJeUd9zZe/0ltF4Ag6LAJ.1P4gWlm');
 
 insert into administrador values(1);
 insert into administrador values(2);
 
 insert into paciente values('24567234', 0, 0, 'Darly de Guarni', '5454545', 'url_foto', 0, 'Sin alergias', '1990-01-01', 0, 3);
 insert into paciente values('87625145', 1, 0, 'Yhonatan de Valeria', '8989898', 'url_foto', 1, 'Perros', '1990-01-01', 1, 4);
-insert into paciente values('87921354', 2, 0, 'Julian de Ana', '7878787', 'url_foto', 2, 'Los lacteos', '1990-01-01', 2, 5);
-insert into paciente values('10384951', 3, 0, 'Juan Manuel', '6565656', 'url_foto', 3, 'Sin alergias', '1990-01-01', 3, 6);
+insert into paciente values('87921354', 2, 0, 'Julian de Camila', '7878787', 'url_foto', 2, 'Los lacteos', '1990-01-01', 2, 5);
+insert into paciente values('10384951', 3, 0, 'Juan Manuel de caracas', '6565656', 'url_foto', 3, 'Sin alergias', '1990-01-01', 3, 6);
 insert into paciente values('95132016', 4, 0, 'Jhojan de la Ex', '2323232', 'url_foto', 4, 'acetaminofen', '1990-01-01', 4, 7);
-insert into paciente values('12345678', 5, 0, 'Juan de la Ex', '2323232', 'url_foto', 5, 'acetaminofen', '1990-01-01', 5, 13);
+insert into paciente values('12345678', 5, 0, 'Cristian de la Ex', '2323232', 'url_foto', 5, 'acetaminofen', '1990-01-01', 5, 13);
 
 insert into medico values('13684632', 0, 0, 'Pepito Perez', '1019521', 'url_foto', 0, 8);
 insert into medico values('98412055', 1, 0, 'Fernando Salazar', '0545025', 'url_foto', 1, 9);
@@ -49,11 +49,11 @@ insert into registro_recordatorio values(4, 0, '2023-10-24');
 insert into registro_recordatorio values(5, 1, '2023-10-26');
 insert into registro_recordatorio values(6, 0, '2023-10-26');
 
-insert into cita values(1, 0, '2023-10-22', '2023-10-15', '11:00:00', 'Motivo1', 9, 3, 1);
+insert into cita values(1, 0, '2023-10-25', '2023-10-15', '11:00:00', 'Motivo1', 9, 4, 1);
 insert into cita values(2, 0, '2023-10-23', '2023-10-16', '11:00:00', 'Motivo2', 8, 6, 2);
-insert into cita values(3, 2, '2023-10-24', '2023-10-17', '11:00:00', 'Motivo3', 10, 4, 3);
-insert into cita values(4, 1, '2023-10-25', '2023-10-18', '11:00:00', 'Motivo4', 11, 5, 4);
-insert into cita values(5, 0, '2023-10-26', '2023-10-19', '11:00:00', 'Motivo5', 12, 7, 5);
+insert into cita values(3, 2, '2023-10-25', '2023-10-17', '11:00:00', 'Motivo3', 10, 13, 3);
+insert into cita values(4, 1, '2023-10-26', '2023-10-19', '11:00:00', 'Motivo4', 11, 5, 4);
+insert into cita values(5, 0, '2023-10-25', '2023-10-19', '11:00:00', 'Motivo5', 12, 4, 5);
 insert into cita values(6, 0, '2023-10-27', '2023-10-20', '11:00:00', 'Motivo6', 14, 13, 6);
 
 insert into consulta values(1, 'Diagnostico1', 'NotasMedico1','Tratamiento1', 1);
@@ -70,10 +70,10 @@ insert into pqrs values(5, 1, '2023-10-26','Motivo5', 0, 5);
 insert into pqrs values(6, 1, '2023-10-26','Motivo5', 0, 6);
 
 
-insert into mensaje values(1, '2023-10-20','Mensaje1', 1, 1, 1);
-insert into mensaje values(2, '2023-10-21','Mensaje2', 2, 1, 2);
-insert into mensaje values(3, '2023-10-22','Mensaje3', 3, 1, 3);
-insert into mensaje values(4, '2023-10-23','Mensaje4', 4, 1, 4);
-insert into mensaje values(5, '2023-10-24','Mensaje5', 5, 1, 5);
+insert into mensaje values(1, '2023-10-20','Mensaje1', 1, 1);
+insert into mensaje values(2, '2023-10-21','Mensaje2', 2, 1);
+insert into mensaje values(3, '2023-10-22','Mensaje3', 3, 1);
+insert into mensaje values(4, '2023-10-23','Mensaje4', 4, 1);
+insert into mensaje values(5, '2023-10-24','Mensaje5', 5, 1);
 
 

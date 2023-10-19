@@ -28,7 +28,7 @@ public class MedicoServicioImpl implements MedicoServices {
     @Override
     public List<ItemCitaMedicoDTO> listarCitasPendientes(int codigoMedico, LocalDate dia) throws Exception {
 
-        Medico medico = medicoRepo.findById(codigoMedico).orElseThrow( () -> new Exception("No existe el medico") );
+        Medico medico = medicoRepo.findById(codigoMedico).orElseThrow( () -> new Exception("No existe el codigoMedico") );
         List<Cita> citas = citaRepo.findAllByMedico(medico);
         List<ItemCitaMedicoDTO> respuesta = new ArrayList<>();
 
@@ -129,7 +129,7 @@ public class MedicoServicioImpl implements MedicoServices {
 
         Optional<Medico> medico = medicoRepo.findById(codigoMedico);
         if(medico.isEmpty()){
-            throw new Exception("No existe el medico");
+            throw new Exception("No existe el codigoMedico");
         }
         List<Disponibilidad> disponibilidades = disponibilidadRepo.findAllByMedico(medico.get());
 
@@ -143,7 +143,7 @@ public class MedicoServicioImpl implements MedicoServices {
 
         for( Disponibilidad d : disponibilidades ){
             if(d.getDia().equals(diaLibreDTO.fecha()) || d.getDia().isAfter(LocalDate.now())){
-                throw new Exception("Ya existe una disponibilidad agendada para el medico");
+                throw new Exception("Ya existe una disponibilidad agendada para el codigoMedico");
             }
         }
 
@@ -159,7 +159,7 @@ public class MedicoServicioImpl implements MedicoServices {
     @Override
     public List<ItemCitaRealizadaDTO> listarCitasRealizadasMedico(int codigoMedico) throws Exception {
 
-        Medico medico = medicoRepo.findById(codigoMedico).orElseThrow( () -> new Exception("No existe el medico") );
+        Medico medico = medicoRepo.findById(codigoMedico).orElseThrow( () -> new Exception("No existe el codigoMedico") );
         List<Cita> citas = citaRepo.findAllByMedico(medico);
         List<ItemCitaRealizadaDTO> respuesta = new ArrayList<>();
 

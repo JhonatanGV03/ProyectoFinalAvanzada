@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.Length;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public record ItemCitaMedicoDTO( //Item cita de la lista de citas que tiene el medico en su agenda
+public record ItemCitaMedicoDTO( //Item cita de la lista de citas que tiene el codigoMedico en su agenda
         @NotBlank @Length(max = 100)
         String nombrePaciente,
         @NotEmpty

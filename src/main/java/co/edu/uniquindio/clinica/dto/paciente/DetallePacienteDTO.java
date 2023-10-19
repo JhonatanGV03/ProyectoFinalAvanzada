@@ -11,19 +11,20 @@ import java.time.LocalDate;
 public record DetallePacienteDTO(
         @Positive
         int codigo,
-        @NotBlank @Length(max = 20)
+        @NotBlank @Length(max = 20, message = "La cedula debe tener maximo 20 caracteres")
         String cedula,
-        @NotBlank @Email @Length(max = 50)
+        @NotBlank @Email(message = "Ingrese una direccion de correo valida")
+        @Length(max = 50, message = "El correo debe tener maximo 50 caracteres")
         String correo,
-        @NotBlank @Length(max = 100)
+        @NotBlank @Length(max = 100, message = "El nombre debe tener maximo 100 caracteres")
         String nombre,
         @NotBlank
         String password,
-        @NotBlank @Length(max = 10)
+        @NotBlank @Length(max = 10, message = "El numero de telefono debe tener maximo 10 digitos")
         String telefono,
         @NotNull
         Ciudad ciudad,
-        @NotBlank @Past
+        @NotEmpty @Past(message = "Seleccione una fecha de nacimiento correcta")
         LocalDate fechaNacimiento,
         @NotBlank @Length(max = 250)
         String alergias,

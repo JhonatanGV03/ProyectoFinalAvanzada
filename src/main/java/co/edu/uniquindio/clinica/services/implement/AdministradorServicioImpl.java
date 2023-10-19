@@ -78,7 +78,7 @@ public class AdministradorServicioImpl implements AdministradorServices {
         medico.setEspecialidad(medicoDTO.especialidad());
         medico.setTelefono(medicoDTO.telefono());
         medico.setCorreo(medicoDTO.correo());
-        //medico.setPassword(medicoDTO.password());
+        //codigoMedico.setPassword(medicoDTO.password());
         medico.setUrlFoto(medicoDTO.urlFoto());
         medico.setEstado(EstadoUsuario.ACTIVO);
 

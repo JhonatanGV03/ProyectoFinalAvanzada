@@ -23,4 +23,8 @@ public class EmailServicioImpl implements EmailServices {
         helper.setFrom("clinicaaurorareal@gmail.com");
         javaMailSender.send(mensaje);
     }
+    @Override
+    public void enviarLinkRecuperacion(String email) throws Exception {
+
+    }
 }

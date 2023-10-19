@@ -31,7 +31,5 @@ public class Mensaje implements Serializable {
     @ManyToOne
     @JoinColumn(nullable = false)
     private Cuenta cuenta;
-    @OneToOne
-    private Mensaje mensajeInt;
 }
 

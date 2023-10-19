@@ -7,7 +7,7 @@ import org.hibernate.validator.constraints.Length;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public record ItemCitaRealizadaDTO( //Item cita realizada por el medico del historial de consultas del medico
+public record ItemCitaRealizadaDTO( //Item cita realizada por el codigoMedico del historial de consultas del codigoMedico
         @NotEmpty
         LocalDate fechaAtencion,
         @NotEmpty

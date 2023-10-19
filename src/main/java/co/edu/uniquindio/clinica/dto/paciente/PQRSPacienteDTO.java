@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import org.hibernate.validator.constraints.Length;
 
-public record RegistroPQRSDTO(
+public record PQRSPacienteDTO(
         @Positive
         int codigoCita,
         @Positive

@@ -3,7 +3,6 @@ package co.edu.uniquindio.clinica.services.implement;
 import co.edu.uniquindio.clinica.services.interfaces.ImagenesServices;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 

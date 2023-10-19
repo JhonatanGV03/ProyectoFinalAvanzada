@@ -8,7 +8,7 @@ import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDateTime;
 
-public record ItemCitaHistorialDTO( //Item cita del historial medico del paciente
+public record ItemCitaHistorialDTO( //Item cita del historial codigoMedico del paciente
         @NotEmpty
         LocalDateTime fechaAtencion,
         @NotBlank @Length(max = 100)

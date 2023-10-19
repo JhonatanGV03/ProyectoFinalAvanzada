@@ -38,16 +38,14 @@ public class Cita implements Serializable {
 
     //Relaciones
     @ManyToOne
-    @JoinColumn(nullable = false, unique = true)
+    @JoinColumn(nullable = false)
     private Paciente paciente;
     @ManyToOne
-    @JoinColumn(nullable = false, unique = true)
+    @JoinColumn(nullable = false)
     private Medico medico;
     @OneToOne(mappedBy="cita")
-    @JoinColumn(nullable = false)
     private Consulta consulta;
     @OneToOne
-    @JoinColumn(nullable = false)
     private RegistroRecordatorio registroRecordatorio;
     @OneToMany(mappedBy="cita")
     private List<PQRS> PQRS;

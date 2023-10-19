@@ -6,7 +6,6 @@ import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.TestComponent;
 
 @SpringBootTest
 @Transactional
@@ -20,7 +19,7 @@ public class EmailServiceTest {
         try {
             emailService.enviarCorreo(new EmailDTO(
                     "Querido usuario, La Clinica Aurora Real le informa que su cita ha sido agendada con exito",
-                    "alexdj1920@gmail.com",
+                    "jhonatanva.2003.jsgv@gmail.com",
                     "Primera Notificación de cita",
                     "clinicaaurora@gmail.com"));
         } catch (Exception e) {
