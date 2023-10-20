@@ -21,7 +21,7 @@ insert into paciente values('87625145', 1, 0, 'Yhonatan de Valeria', '8989898', 
 insert into paciente values('87921354', 2, 0, 'Julian de Camila', '7878787', 'url_foto', 2, 'Los lacteos', '1990-01-01', 2, 5);
 insert into paciente values('10384951', 3, 0, 'Juan Manuel de caracas', '6565656', 'url_foto', 3, 'Sin alergias', '1990-01-01', 3, 6);
 insert into paciente values('95132016', 4, 0, 'Jhojan de la Ex', '2323232', 'url_foto', 4, 'acetaminofen', '1990-01-01', 4, 7);
-insert into paciente values('12345678', 5, 0, 'Cristian de la Ex', '2323232', 'url_foto', 5, 'acetaminofen', '1990-01-01', 5, 13);
+insert into paciente values('12345678', 5, 0, 'Cristian de DanielaDia', '2323232', 'url_foto', 5, 'acetaminofen', '1990-01-01', 5, 13);
 
 insert into medico values('13684632', 0, 0, 'Pepito Perez', '1019521', 'url_foto', 0, 8);
 insert into medico values('98412055', 1, 0, 'Fernando Salazar', '0545025', 'url_foto', 1, 9);

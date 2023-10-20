@@ -207,7 +207,7 @@ public class PacienteServicioImpl implements PacienteServices {
         if (pqrsRepo.findAll().isEmpty()){
             throw new Exception("No existen PQRS");
         }
-        List<PQRS> listaPqrs = pqrsRepo.findAll();
+        List<PQRS> listaPqrs = pqrsRepo.obtenerPqrs(codigoPaciente);
         List<ItemPQRSDTO> respuesta = new ArrayList<>();
 
         for( PQRS p: listaPqrs ){

@@ -1,6 +1,8 @@
 package co.edu.uniquindio.clinica;
 
+import co.edu.uniquindio.clinica.dto.ItemPQRSDTO;
 import co.edu.uniquindio.clinica.dto.NewPasswordDTO;
+import co.edu.uniquindio.clinica.dto.RegistroRespuestaDTO;
 import co.edu.uniquindio.clinica.dto.paciente.*;
 import co.edu.uniquindio.clinica.model.enums.*;
 import co.edu.uniquindio.clinica.services.interfaces.PacienteServices;
@@ -131,6 +133,9 @@ public class PacienteServiceTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void listarPqrsPacienteTest() throws Exception {
+        List<ItemPQRSDTO> pqrs = pacienteService.listarPQRSPaciente(5);
+        pqrs.forEach(System.out::println);
+        Assertions.assertEquals(1, pqrs.size());
     }
 
     @Test
@@ -148,6 +153,14 @@ public class PacienteServiceTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void responderPqrsTest() throws Exception {
+        RegistroRespuestaDTO respuesta = new RegistroRespuestaDTO(
+                1,
+                6,
+                5,
+                "Respuesta de la respuesta"
+        );
+        int codigo = pacienteService.responderPQRS(respuesta);
+        Assertions.assertNotNull(codigo);
     }
 
     @Test
