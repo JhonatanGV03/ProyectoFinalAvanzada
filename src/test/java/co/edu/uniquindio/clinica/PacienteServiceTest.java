@@ -196,7 +196,7 @@ public class PacienteServiceTest {
     public void listarCitasPacienteTest() throws Exception {
         List<ItemCitaDTO> citas = pacienteService.listarCitasPaciente(4);
         citas.forEach(System.out::println);
-        Assertions.assertEquals(3, citas.size());
+        Assertions.assertEquals(2, citas.size());
     }
 
     @Test

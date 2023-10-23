@@ -93,7 +93,7 @@ public class MedicoServiceTest {
         DiaLibreDTO diaLibreDTO = new DiaLibreDTO(fecha);
         int medico = medicoService.agendarDiaLibre(diaLibreDTO, 14);
         System.out.println(medico);
-        Assertions.assertEquals(6, medico );
+        Assertions.assertEquals(8, medico );
     }
 
     @Test

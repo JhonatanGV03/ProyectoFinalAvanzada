@@ -18,6 +18,5 @@ public record ItemCitaMedicoDTO( //Item cita de la lista de citas que tiene el c
         LocalTime hora,
         @NotNull
         EstadoCita estadoCita
-
 ) {
 }

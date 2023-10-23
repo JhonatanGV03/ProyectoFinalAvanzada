@@ -32,7 +32,7 @@ public class PacienteServicioImpl implements PacienteServices {
     private final MedicoRepository medicoRepo;
     private final PQRSRepository pqrsRepo;
     private final MensajeRepository mensajeRepo;
-    private final EmailServices emailServices;
+    //private final EmailServices emailServices;
 
     @Override
     public int registrarse(RegistroPacienteDTO pacienteDTO) throws Exception {
@@ -281,9 +281,6 @@ public class PacienteServicioImpl implements PacienteServices {
 
     @Override
     public int agendarCita(RegistroCitaDTO registroCitaDTO) throws Exception {
-        //List<Cita> citasRep = citaRepo.findAllByFechaCitaAndMedico_Codigo(registroCitaDTO.fecha(), registroCitaDTO.);
-
-        ///**
         List<Cita> citasPaciente = citaRepo.findAllByPaciente_Codigo(registroCitaDTO.codigoPaciente());
         Optional<Medico> medico = medicoRepo.findById(registroCitaDTO.codigoMedico());
         Optional<Paciente> paciente = pacienteRepo.findById(registroCitaDTO.codigoPaciente());
@@ -339,8 +336,6 @@ public class PacienteServicioImpl implements PacienteServices {
 
 
         return citaCreada.getCodigoCita();
-
-        //**/
     }
     public DetallesCitaDTO verDetallesCita(int codigo) throws Exception {
         Optional<Cita> citaEncontrada = citaRepo.findById(codigo);
