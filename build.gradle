@@ -39,6 +39,8 @@ dependencies {
     runtimeOnly 'com.mysql:mysql-connector-j'
     //Controlador web ??
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    //Prueba  de api´s
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.4'
 }
 test {
     useJUnitPlatform()
