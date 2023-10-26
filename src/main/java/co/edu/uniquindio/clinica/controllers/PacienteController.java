@@ -5,6 +5,7 @@ import co.edu.uniquindio.clinica.dto.MensajeDTO;
 import co.edu.uniquindio.clinica.dto.NewPasswordDTO;
 import co.edu.uniquindio.clinica.dto.RegistroRespuestaDTO;
 import co.edu.uniquindio.clinica.dto.paciente.*;
+import co.edu.uniquindio.clinica.model.classes.Mensaje;
 import co.edu.uniquindio.clinica.services.interfaces.PacienteServices;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -49,57 +50,61 @@ public class PacienteController {
     }
 
     @PutMapping("/cambiar-password")
-    public void cambiarPassword(@Valid @RequestBody NewPasswordDTO newPasswordDTO) throws Exception{
+    public ResponseEntity<MensajeDTO<String>> cambiarPassword(@Valid @RequestBody NewPasswordDTO newPasswordDTO) throws Exception{
         pacienteService.cambiarPassword(newPasswordDTO);
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, "Contraseña modificada correctamente"));
     }
 
     @PostMapping("/crear-pqrs")
-    public int crearPQRS(@Valid @RequestBody PQRSPacienteDTO PQRSPacienteDTO) throws Exception{
-        return pacienteService.crearPQRS(PQRSPacienteDTO);
+    public ResponseEntity<MensajeDTO<String>> crearPQRS(@Valid @RequestBody PQRSPacienteDTO PQRSPacienteDTO) throws Exception{
+        pacienteService.crearPQRS(PQRSPacienteDTO);
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, "PQRS creado correctamente"));
     }
 
     @GetMapping("/listar-pqrs/{codigoPaciente}")
-    public List<ItemPQRSDTO> listarPQRSPaciente(@PathVariable int codigoPaciente) throws Exception{
-        return pacienteService.listarPQRSPaciente(codigoPaciente);
+    public ResponseEntity<MensajeDTO<List<ItemPQRSDTO>>> listarPQRSPaciente(@PathVariable int codigoPaciente) throws Exception{
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, pacienteService.listarPQRSPaciente(codigoPaciente)));
     }
 
     @GetMapping("/detalles-pqrs/{codigo}")
-    public DetallesPQRSDTO verDetallesPQRS(@PathVariable int codigo) throws Exception{
-        return pacienteService.verDetallesPQRS(codigo);
+    public ResponseEntity<MensajeDTO<DetallesPQRSDTO>> verDetallesPQRS(@PathVariable int codigo) throws Exception{
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, pacienteService.verDetallesPQRS(codigo)));
     }
 
     @PostMapping("/responder-pqrs") //Puede ser put
-    public int responderPQRS(@Valid @RequestBody RegistroRespuestaDTO registroRespuestaDTO) throws Exception{
-        return pacienteService.responderPQRS(registroRespuestaDTO);
+    public ResponseEntity<MensajeDTO<String>> responderPQRS(@Valid @RequestBody RegistroRespuestaDTO registroRespuestaDTO) throws Exception{
+        pacienteService.responderPQRS(registroRespuestaDTO);
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, "Respuesta registrada correctamente"));
     }
 
     @PostMapping("/agendar-cita")
-    public int agendarCita(@Valid @RequestBody RegistroCitaDTO registroCitaDTO) throws Exception{
-        return pacienteService.agendarCita(registroCitaDTO);
+    public ResponseEntity<MensajeDTO<String>> agendarCita(@Valid @RequestBody RegistroCitaDTO registroCitaDTO) throws Exception{
+        pacienteService.agendarCita(registroCitaDTO);
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, "Cita agendada correctamente"));
     }
 
     @GetMapping("/detalles-cita/{codigo}")
-    public DetallesCitaDTO verDetallesCita(@PathVariable int codigo) throws Exception{
-        return pacienteService.verDetallesCita(codigo);
+    public ResponseEntity<MensajeDTO<DetallesCitaDTO>> verDetallesCita(@PathVariable int codigo) throws Exception{
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, pacienteService.verDetallesCita(codigo)));
     }
 
     @GetMapping("/listar-citas/{codigoPaciente}")
-    public List<ItemCitaDTO> listarCitasPaciente(@PathVariable int codigoPaciente) throws Exception{
-        return pacienteService.listarCitasPaciente(codigoPaciente);
+    public ResponseEntity<MensajeDTO<List<ItemCitaDTO>>> listarCitasPaciente(@PathVariable int codigoPaciente) throws Exception{
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, pacienteService.listarCitasPaciente(codigoPaciente)));
     }
 
     @GetMapping("detalles-consulta/{codigo}")
-    public DetallesConsultaDTO verDetalleConsulta(@PathVariable int codigo) throws Exception{
-        return pacienteService.verDetalleConsulta(codigo);
+    public ResponseEntity<MensajeDTO<DetallesConsultaDTO>> verDetalleConsulta(@PathVariable int codigo) throws Exception{
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, pacienteService.verDetalleConsulta(codigo)));
     }
 
     @GetMapping("/listar-cita/{codigoPaciente}/{fecha}")  //No me convencen los nombres
-    public List<ItemCitaDTO> filtrarCitasPacientePorFecha(@PathVariable LocalDate fecha,@PathVariable int codigoPaciente) throws Exception{
-        return pacienteService.filtrarCitasPacientePorFecha(fecha,codigoPaciente);
+    public ResponseEntity<MensajeDTO<List<ItemCitaDTO>>> filtrarCitasPacientePorFecha(@PathVariable LocalDate fecha,@PathVariable int codigoPaciente) throws Exception{
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, pacienteService.filtrarCitasPacientePorFecha(fecha,codigoPaciente)));
     }
 
     @GetMapping("/listar-cita-medico/{codigoPaciente}/{codigoMedico}")
-    public List<ItemCitaDTO> filtrarCitasPacientePorMedico(@PathVariable int codigoMedico,@PathVariable int codigoPaciente) throws Exception{
-        return pacienteService.filtrarCitasPacientePorMedico(codigoMedico,codigoPaciente);
+    public ResponseEntity<MensajeDTO<List<ItemCitaDTO>>> filtrarCitasPacientePorMedico(@PathVariable int codigoMedico,@PathVariable int codigoPaciente) throws Exception{
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, pacienteService.filtrarCitasPacientePorMedico(codigoMedico,codigoPaciente)));
     }
 }
