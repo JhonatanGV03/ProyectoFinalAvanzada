@@ -5,7 +5,6 @@ import co.edu.uniquindio.clinica.dto.MensajeDTO;
 import co.edu.uniquindio.clinica.dto.NewPasswordDTO;
 import co.edu.uniquindio.clinica.dto.RegistroRespuestaDTO;
 import co.edu.uniquindio.clinica.dto.paciente.*;
-import co.edu.uniquindio.clinica.model.classes.Mensaje;
 import co.edu.uniquindio.clinica.services.interfaces.PacienteServices;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -20,12 +19,6 @@ import java.util.List;
 @RequestMapping("/api/pacientes")
 public class PacienteController {
     private final PacienteServices pacienteService;
-
-    @PostMapping("/registrarse")
-    public ResponseEntity<MensajeDTO<String>> registrarse(@Valid @RequestBody RegistroPacienteDTO paciente) throws Exception{
-        pacienteService.registrarse(paciente);
-        return ResponseEntity.ok().body( new MensajeDTO<>(false, "Paciente registrado correctamente"));
-    }
 
     @GetMapping("/detalles/{codigoPaciente}")
     public ResponseEntity<MensajeDTO<DetallePacienteDTO>> verDetallePaciente(@PathVariable int codigoPaciente) throws Exception{

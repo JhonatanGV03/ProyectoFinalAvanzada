@@ -10,7 +10,6 @@ import co.edu.uniquindio.clinica.model.enums.EstadoCita;
 import co.edu.uniquindio.clinica.model.enums.EstadoPQRS;
 import co.edu.uniquindio.clinica.model.enums.EstadoUsuario;
 import co.edu.uniquindio.clinica.repositories.*;
-import co.edu.uniquindio.clinica.services.interfaces.EmailServices;
 import co.edu.uniquindio.clinica.services.interfaces.PacienteServices;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
