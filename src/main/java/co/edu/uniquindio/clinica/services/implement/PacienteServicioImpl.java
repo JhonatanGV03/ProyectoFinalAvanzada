@@ -31,7 +31,7 @@ public class PacienteServicioImpl implements PacienteServices {
     private final MedicoRepository medicoRepo;
     private final PQRSRepository pqrsRepo;
     private final MensajeRepository mensajeRepo;
-    //private final EmailServices emailServices;
+
 
     @Override
     public int registrarse(RegistroPacienteDTO pacienteDTO) throws Exception {
@@ -84,7 +84,6 @@ public class PacienteServicioImpl implements PacienteServices {
                 buscado.getCedula(),
                 buscado.getCorreo(),
                 buscado.getNombre(),
-                buscado.getPassword(),
                 buscado.getTelefono(),
                 buscado.getCiudad(),
                 buscado.getFechaNacimiento(),
@@ -128,9 +127,9 @@ public class PacienteServicioImpl implements PacienteServices {
 
 
         //Parte de encriptado
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String passwordEncriptada = passwordEncoder.encode( pacienteDTO.password() );
-        buscado.setPassword( passwordEncriptada );
+        //BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        //String passwordEncriptada = passwordEncoder.encode( pacienteDTO.password() );
+        //buscado.setPassword( passwordEncriptada );
 
         pacienteRepo.save( buscado );
 
@@ -168,7 +167,7 @@ public class PacienteServicioImpl implements PacienteServices {
     }
 
     @Override
-    public List<ItemPacienteDTO> listarPacientes() throws Exception{
+    public List<ItemPacienteDTO> listarPacientes() {
         List<Paciente> pacientes = pacienteRepo.findAll();
         List<ItemPacienteDTO> repuesta = new ArrayList<>();
         for (Paciente paciente : pacientes) {
@@ -185,13 +184,14 @@ public class PacienteServicioImpl implements PacienteServices {
     @Override
     public int crearPQRS(PQRSPacienteDTO PQRSPacienteDTO) throws Exception {
 
+        Cita cita = citaRepo.findById(PQRSPacienteDTO.codigoCita()).orElseThrow( () -> new Exception("No existe la cita") );
 
         PQRS pqrs = new PQRS();
         pqrs.setFechaCreacion(LocalDateTime.now());
         pqrs.setTipoPQRS(PQRSPacienteDTO.tipoPQRS());
         pqrs.setMotivo(PQRSPacienteDTO.mensaje());
         pqrs.setEstado(EstadoPQRS.NUEVO);
-        pqrs.setCita(citaRepo.findById(PQRSPacienteDTO.codigoCita()).get());
+        pqrs.setCita(cita);
 
         PQRS pqrsCreada = pqrsRepo.save(pqrs);
         return pqrsCreada.getCodigo();
@@ -296,7 +296,8 @@ public class PacienteServicioImpl implements PacienteServices {
                 if (cita.getFechaCita().equals(registroCitaDTO.fecha())){
                     throw new Exception("Ya existe una cita para el paciente " + paciente.get().getNombre() + " en la fecha " + registroCitaDTO.fecha());
                 }
-                if (cita.getMedico().equals(registroCitaDTO.codigoMedico())){
+                //EL IDE dice que da error - Tener en cuenta
+                if (cita.getMedico().equals(medico.get())){
                     throw new Exception("Ya existe una cita con el médico " + registroCitaDTO.codigoMedico() + " en la fecha " + cita.getFechaCita());
                 }
             }
@@ -313,7 +314,7 @@ public class PacienteServicioImpl implements PacienteServices {
 
         Cita citaCreada = citaRepo.save(cita);
 
-        /**  //Esto es para enviar el correo pero google nos beto
+        /* //Esto es para enviar el correo pero google nos beto
          emailServices.enviarCorreo(new EmailDTO(
          "Agendamiento de cita\n\n " +
          "Informacion de su cita medica:\n " +
@@ -331,7 +332,7 @@ public class PacienteServicioImpl implements PacienteServices {
          "Clinica Aurora"
 
          ));
-         **/
+         */
 
 
         return citaCreada.getCodigoCita();

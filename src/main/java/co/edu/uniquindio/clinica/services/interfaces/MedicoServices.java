@@ -13,7 +13,7 @@ public interface MedicoServices {
 
     List<ItemCitaMedicoDTO> listarCitasPendientes(int codigoMedico, LocalDate dia) throws Exception;
     void atenderCita(RegistroConsultaDTO atencionMedica) throws Exception;
-    public RegistroConsultaDTO cargarRegistro(int codigoCita) throws Exception;
+    RegistroConsultaDTO cargarRegistro(int codigoCita) throws Exception;
     List<ItemCitaHistorialDTO> listarHistorialPaciente(int codigoPaciente) throws Exception;
     int agendarDiaLibre(DiaLibreDTO diaLibreDTO, int codigoMedico) throws Exception;
     List<ItemCitaRealizadaDTO> listarCitasRealizadasMedico(int codigoMedico) throws Exception;

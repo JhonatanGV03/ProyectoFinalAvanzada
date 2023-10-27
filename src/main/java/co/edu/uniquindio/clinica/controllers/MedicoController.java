@@ -1,9 +1,11 @@
 package co.edu.uniquindio.clinica.controllers;
 
+import co.edu.uniquindio.clinica.dto.MensajeDTO;
 import co.edu.uniquindio.clinica.dto.medico.*;
 import co.edu.uniquindio.clinica.services.interfaces.MedicoServices;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -16,32 +18,28 @@ public class MedicoController {
     private final MedicoServices medicoService;
 
     @GetMapping("/citasPendientes/{codigoMedico}/{dia}")
-    List<ItemCitaMedicoDTO> listarCitasPendientes(@PathVariable int codigoMedico,@PathVariable LocalDate dia) throws Exception{
-        medicoService.listarCitasPendientes(codigoMedico,dia);
-        return null;
+    public ResponseEntity<MensajeDTO<List<ItemCitaMedicoDTO>>> listarCitasPendientes(@PathVariable int codigoMedico, @PathVariable LocalDate dia) throws Exception{
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, medicoService.listarCitasPendientes(codigoMedico, dia)));
     }
     @PostMapping("/atencionCita")
-    void atenderCita(@Valid @RequestBody RegistroConsultaDTO atencionMedica) throws Exception{
+    public ResponseEntity<MensajeDTO<String>> atenderCita(@Valid @RequestBody RegistroConsultaDTO atencionMedica) throws Exception{
         medicoService.atenderCita(atencionMedica);
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, "Cita atendida correctamente"));
     }
     @GetMapping("/carga_Cita/{codigoCita}")
-    public RegistroConsultaDTO cargarRegistro(@PathVariable int codigoCita) throws Exception{
-        medicoService.cargarRegistro(codigoCita);
-        return null;
+    public ResponseEntity<MensajeDTO<RegistroConsultaDTO>> cargarRegistro(@PathVariable int codigoCita) throws Exception{
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, medicoService.cargarRegistro(codigoCita)));
     }
     @GetMapping("/cargaHistorialPaciente/{codigoPaciente}")
-    List<ItemCitaHistorialDTO> listarHistorialPaciente(@PathVariable int codigoPaciente) throws Exception{
-        medicoService.listarHistorialPaciente(codigoPaciente);
-        return null;
+    public ResponseEntity<MensajeDTO<List<ItemCitaHistorialDTO>>> listarHistorialPaciente(@PathVariable int codigoPaciente) throws Exception{
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, medicoService.listarHistorialPaciente(codigoPaciente)));
     }
     @PostMapping("/agendarDiaLibre/{codigoMedico}")
-    int agendarDiaLibre(@Valid @RequestBody DiaLibreDTO diaLibreDTO,@PathVariable int codigoMedico) throws Exception{
-        medicoService.agendarDiaLibre(diaLibreDTO,codigoMedico);
-        return 0;
+    public ResponseEntity<MensajeDTO<Integer>> agendarDiaLibre(@Valid @RequestBody DiaLibreDTO diaLibreDTO,@PathVariable int codigoMedico) throws Exception{
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, medicoService.agendarDiaLibre(diaLibreDTO, codigoMedico)));
     }
     @GetMapping("/citasRealizadas/{codigoMedico}")
-    List<ItemCitaRealizadaDTO> listarCitasRealizadasMedico(@PathVariable int codigoMedico) throws Exception{
-        medicoService.listarCitasRealizadasMedico(codigoMedico);
-        return null;
+    public ResponseEntity<MensajeDTO<List<ItemCitaRealizadaDTO>>> listarCitasRealizadasMedico(@PathVariable int codigoMedico) throws Exception{
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, medicoService.listarCitasRealizadasMedico(codigoMedico)));
     }
 }

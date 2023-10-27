@@ -141,9 +141,9 @@ public class AdministradorServicioImpl implements AdministradorServices {
         buscado.setUrlFoto(medicoDTO.urlFoto());
 
         //Parte de encriptado
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String passwordEncriptada = passwordEncoder.encode( medicoDTO.password() );
-        buscado.setPassword( passwordEncriptada );
+        //BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        //String passwordEncriptada = passwordEncoder.encode( medicoDTO.password() );
+        //buscado.setPassword( passwordEncriptada );
 
         asignarHorariosMedico(buscado,medicoDTO.horario_dto());
 
@@ -175,14 +175,12 @@ public class AdministradorServicioImpl implements AdministradorServices {
             throw new Exception("No hay médicos registrados");
         }
 
-        List<ItemMedicoDTO> respuesta = medicos.stream().map( m -> new ItemMedicoDTO(
+        return medicos.stream().map(m -> new ItemMedicoDTO(
                 m.getCodigo(),
                 m.getCedula(),
                 m.getNombre(),
                 m.getEspecialidad()
         ) ).toList();
-
-        return respuesta;
     }
 
     @Override
@@ -214,7 +212,7 @@ public class AdministradorServicioImpl implements AdministradorServices {
                 buscado.getTelefono(),
                 buscado.getCorreo(),
                 buscado.getUrlFoto(),
-                buscado.getPassword(),
+                //buscado.getPassword(),
                 horariosDTO
         );
     }

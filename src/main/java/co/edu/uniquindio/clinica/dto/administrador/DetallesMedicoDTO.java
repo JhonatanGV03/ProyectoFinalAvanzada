@@ -25,8 +25,6 @@ public record DetallesMedicoDTO(
         @NotBlank @Length(max = 50) @Email
         String correo,
         @NotBlank
-        String password,
-        @NotBlank
         String urlFoto,
         @NotEmpty
         List<HorarioDTO> horario_dto

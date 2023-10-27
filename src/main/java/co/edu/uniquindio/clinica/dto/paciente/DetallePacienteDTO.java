@@ -18,8 +18,6 @@ public record DetallePacienteDTO(
         String correo,
         @NotBlank @Length(max = 100, message = "El nombre debe tener maximo 100 caracteres")
         String nombre,
-        @NotBlank
-        String password,
         @NotBlank @Length(max = 10, message = "El numero de telefono debe tener maximo 10 digitos")
         String telefono,
         @NotNull
