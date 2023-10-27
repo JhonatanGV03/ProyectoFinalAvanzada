@@ -68,7 +68,6 @@ public class AdministradorServiceTest {
                 "12345",
                 "Hernan@email.com",
                 "78387/img/imagen.jpg",
-                "123",
                 horarios
         );
         try {

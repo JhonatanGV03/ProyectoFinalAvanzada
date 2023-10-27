@@ -58,7 +58,6 @@ public class PacienteServiceTest {
                 pacienteGuardado.cedula(),
                 pacienteGuardado.correo(),
                 pacienteGuardado.nombre(),
-                pacienteGuardado.password(),
                 "111111",
                 pacienteGuardado.ciudad(),
                 pacienteGuardado.fechaNacimiento(),
