@@ -3,7 +3,9 @@ package co.edu.uniquindio.clinica.controllers;
 import co.edu.uniquindio.clinica.dto.LoginDTO;
 import co.edu.uniquindio.clinica.dto.MensajeDTO;
 import co.edu.uniquindio.clinica.dto.TokenDTO;
+import co.edu.uniquindio.clinica.dto.administrador.RegistroMedicoDTO;
 import co.edu.uniquindio.clinica.dto.paciente.RegistroPacienteDTO;
+import co.edu.uniquindio.clinica.services.interfaces.AdministradorServices;
 import co.edu.uniquindio.clinica.services.interfaces.AutenticacionServices;
 import co.edu.uniquindio.clinica.services.interfaces.PacienteServices;
 import jakarta.validation.Valid;
@@ -32,4 +34,5 @@ public class AutenticacionController {
         pacienteService.registrarse(paciente);
         return ResponseEntity.ok().body( new MensajeDTO<>(false, "Paciente registrado correctamente"));
     }
+
 }

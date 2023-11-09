@@ -41,7 +41,7 @@ public class AutenticacionServicioImpl implements AutenticacionServices {
             rol = "paciente";
             nombre = ((Paciente) cuenta).getNombre();
         }else if( cuenta instanceof Medico){
-            rol = "codigoMedico";
+            rol = "medico";
             nombre = ((Medico) cuenta).getNombre();
         }else{
             rol = "admin";

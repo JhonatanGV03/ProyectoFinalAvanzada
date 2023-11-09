@@ -19,17 +19,16 @@ import java.util.List;
 public class AdministradorController {
     private final AdministradorServices administradorService;
 
+    @PostMapping("/crearMedico")
+    public ResponseEntity<MensajeDTO<Integer>> crearMedico(@Valid @RequestBody RegistroMedicoDTO medico) throws Exception{
+        return ResponseEntity.ok().body( new MensajeDTO<>(false, administradorService.crearMedico(medico)));
+    }
+
     //Autenticacion¿?
     @PostMapping("/crearAdmin")
     public ResponseEntity<MensajeDTO<String>> crearAdmin(@Valid @RequestBody RegistroAdminDTO admin) throws Exception{
         administradorService.crearAdmin(admin);
         return ResponseEntity.ok().body( new MensajeDTO<>(false, "Administrador registrado correctamente"));
-    }
-
-    //Autenticacion¿?
-    @PostMapping("/crearMedico")
-    public ResponseEntity<MensajeDTO<Integer>> crearMedico(@Valid @RequestBody RegistroMedicoDTO medico) throws Exception{
-        return ResponseEntity.ok().body( new MensajeDTO<>(false, administradorService.crearMedico(medico)));
     }
 
     //Autenticacion¿?

@@ -24,7 +24,7 @@ public class FiltroToken implements Filter {
         try{
             if (requestURI.startsWith("/api/pacientes") || requestURI.startsWith("/api/medicos")
 
-                    || requestURI.startsWith("/api/admins") ) {
+                    || requestURI.startsWith("/api/admin") ) {
                 if(token != null) {
                     Jws<Claims> jws = jwtUtils.parseJwt(token);
                     if (
@@ -36,7 +36,7 @@ public class FiltroToken implements Filter {
 
                                             !jws.getBody().get("rol").equals("medico") ) ||
 
-                                    ( requestURI.startsWith("/api/admins") &&
+                                    ( requestURI.startsWith("/api/admin") &&
 
                                             !jws.getBody().get("rol").equals("admin") )) {
 
