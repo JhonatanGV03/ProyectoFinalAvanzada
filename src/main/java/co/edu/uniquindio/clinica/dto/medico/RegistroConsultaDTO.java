@@ -11,8 +11,8 @@ import java.time.LocalDateTime;
 public record RegistroConsultaDTO(
         //Datos Atencion
         @Positive
-        int codigoAtencion,
-        @NotEmpty
+        int codigoCita,
+        @NotNull
         LocalDateTime fechaHoraAtencion,
         @NotBlank @Length(max = 500)
         String diagnosticoMedico,
@@ -38,7 +38,7 @@ public record RegistroConsultaDTO(
         @NotNull
         TipoSangre tipoSangre,
         @NotBlank @Length(max = 250)
-        String Alergias
+        String alergias
 
 ) {
 }

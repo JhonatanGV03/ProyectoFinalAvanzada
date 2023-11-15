@@ -59,7 +59,7 @@ public class MedicoServicioImpl implements MedicoServices {
     @Override
     public void atenderCita(RegistroConsultaDTO atencionMedica) throws Exception {
 
-        Cita cita = citaRepo.findById(atencionMedica.codigoAtencion()).orElseThrow( () -> new Exception("No existe la cita") );
+        Cita cita = citaRepo.findById(atencionMedica.codigoCita()).orElseThrow( () -> new Exception("No existe la cita") );
 
         cita.setEstado(atencionMedica.estadoCita());
 

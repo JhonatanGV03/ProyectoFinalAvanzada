@@ -32,7 +32,7 @@ public class AdministradorController {
     }
 
     //Autenticacion¿?
-    @PutMapping("/actualizarMedico")
+    @PutMapping("/actualizarMedico") //Deberia haber un codigo como parametro y la url deberia ser "actualizarMedico{codigo}"
     public ResponseEntity<MensajeDTO<Integer>> actualizarmedico(@Valid @RequestBody DetallesMedicoDTO medicoDTO) throws Exception{
         return ResponseEntity.ok().body( new MensajeDTO<>(false, administradorService.actualizarmedico(medicoDTO)));
     }
@@ -51,7 +51,6 @@ public class AdministradorController {
     public ResponseEntity<MensajeDTO<DetallesMedicoDTO>> obtenerMedico(@PathVariable int codigo) throws Exception{
         return ResponseEntity.ok().body(new MensajeDTO<>(false, administradorService.obtenerMedico(codigo)));
     }
-
     @GetMapping("/listarPQRS")
     public ResponseEntity<MensajeDTO<List<ItemPQRSDTO>>> listarPQRS() throws Exception{
         return ResponseEntity.ok().body(new MensajeDTO<>(false, administradorService.listarPQRS()));

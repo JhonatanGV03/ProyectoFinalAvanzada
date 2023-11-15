@@ -145,7 +145,7 @@ public class AdministradorServicioImpl implements AdministradorServices {
         //String passwordEncriptada = passwordEncoder.encode( medicoDTO.password() );
         //buscado.setPassword( passwordEncriptada );
 
-        asignarHorariosMedico(buscado,medicoDTO.horario_dto());
+        asignarHorariosMedico(buscado,medicoDTO.horarios());
 
         medicoRepo.save( buscado );
 
