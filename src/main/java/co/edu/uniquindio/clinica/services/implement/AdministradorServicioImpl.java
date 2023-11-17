@@ -37,7 +37,6 @@ public class AdministradorServicioImpl implements AdministradorServices {
     @Override
     public void crearAdmin(RegistroAdminDTO admin) throws Exception {
 
-
         if( estaRepetidoCorreoAdmin(admin.correo()) ){
             throw new Exception("El correo "+admin.correo()+" ya está en uso");
         }
@@ -331,7 +330,7 @@ public class AdministradorServicioImpl implements AdministradorServices {
     }
 
     @Override
-    public void cambiarEstadoPQRS(int codigoPQRS, EstadoPQRS estadoPQRS) throws Exception {
+    public void cambiarEstadoPQRS(int codigoPQRS, EstadoPQRSDTO estadoPQRS) throws Exception {
 
         Optional<PQRS> opcional = pqrsRepo.findById(codigoPQRS);
 
@@ -340,7 +339,7 @@ public class AdministradorServicioImpl implements AdministradorServices {
         }
 
         PQRS pqrs = opcional.get();
-        pqrs.setEstado( estadoPQRS );
+        pqrs.setEstado(estadoPQRS.estadoPQRS());
 
         pqrsRepo.save( pqrs );
     }

@@ -66,7 +66,7 @@ public class AdministradorController {
     }
 
     @PutMapping("/cambiarEstadoPQRS/{codigoPQRS}")
-    public ResponseEntity<MensajeDTO<String>> cambiarEstadoPQRS(@PathVariable int codigoPQRS,@Valid @RequestBody EstadoPQRS estadoPQRS) throws Exception{
+    public ResponseEntity<MensajeDTO<String>> cambiarEstadoPQRS(@PathVariable int codigoPQRS,@Valid @RequestBody EstadoPQRSDTO estadoPQRS) throws Exception{
         administradorService.cambiarEstadoPQRS(codigoPQRS,estadoPQRS);
         return ResponseEntity.ok().body( new MensajeDTO<>(false, "Estado de PQRS modificado correctamente"));
     }

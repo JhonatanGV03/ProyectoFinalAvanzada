@@ -32,9 +32,14 @@ public class AutenticacionServicioImpl implements AutenticacionServices {
         if( !passwordEncoder.matches(loginDTO.password(), cuenta.getPassword()) ){
             throw new Exception("La contraseña ingresada es incorrecta");
         }
-        return new TokenDTO( crearToken(cuenta) );
+
+        Map<String, Object> map = crearToken(cuenta);
+        String jwtToken = jwtUtils.generarToken(cuenta.getCorreo(), map);
+        String refreshToken = jwtUtils.generateRefreshToken(cuenta.getCorreo(), map);
+        return new TokenDTO( jwtToken, refreshToken );
+
     }
-    private String crearToken(Cuenta cuenta){
+    private Map crearToken(Cuenta cuenta){
         String rol;
         String nombre;
         if( cuenta instanceof Paciente){
@@ -51,6 +56,23 @@ public class AutenticacionServicioImpl implements AutenticacionServices {
         map.put("rol", rol);
         map.put("nombre", nombre);
         map.put("id", cuenta.getCodigo());
-        return jwtUtils.generarToken(cuenta.getCorreo(), map);
+        return map;
+    }
+
+    @Override
+    public TokenDTO refreshToken(TokenDTO tokenDTO) throws Exception{
+        try {
+            String email = jwtUtils.parseJwt(tokenDTO.refreshToken()).getBody().getSubject();
+            Optional<Cuenta> cuentaOptional = cuentaRepo.findByCorreo(email);
+            if(cuentaOptional.isEmpty()){
+                throw new Exception("No existe el correo ingresado");
+            }
+            Cuenta cuenta = cuentaOptional.get();
+            Map<String, Object> map = crearToken(cuenta);
+            String jwtToken = jwtUtils.generarToken(cuenta.getCorreo(), map);
+            return new TokenDTO( jwtToken, tokenDTO.refreshToken() );
+        }catch (Exception e){
+            throw new Exception("El token de refresco no es valido");
+        }
     }
 }
