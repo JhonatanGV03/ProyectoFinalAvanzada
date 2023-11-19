@@ -178,6 +178,7 @@ public class AdministradorServicioImpl implements AdministradorServices {
                 m.getCodigo(),
                 m.getCedula(),
                 m.getNombre(),
+                m.getEstado(),
                 m.getEspecialidad()
         ) ).toList();
     }
