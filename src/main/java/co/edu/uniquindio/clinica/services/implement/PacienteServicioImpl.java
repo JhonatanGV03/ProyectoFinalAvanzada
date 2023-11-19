@@ -284,6 +284,16 @@ public class PacienteServicioImpl implements PacienteServices {
         Optional<Medico> medico = medicoRepo.findById(registroCitaDTO.codigoMedico());
         Optional<Paciente> paciente = pacienteRepo.findById(registroCitaDTO.codigoPaciente());
 
+        int cantidadCitasAct = 0;
+        for(int i = 0; i <= citasPaciente.size(); i++ ){
+            if(citasPaciente.get(i).getEstado() == EstadoCita.PROGRAMADA){
+                cantidadCitasAct++;
+            }
+        }
+
+        if(cantidadCitasAct >= 3){
+            throw new Exception("El paciente ya tiene 3 citas programadas en este momento");
+        }
         if (medico.isEmpty()){
             throw new Exception("No existe un médico con el codigo "+registroCitaDTO.codigoMedico());
         }

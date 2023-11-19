@@ -86,7 +86,7 @@ public class PacienteController {
         return ResponseEntity.ok().body(new MensajeDTO<>(false, pacienteService.listarCitasPaciente(codigoPaciente)));
     }
 
-    @GetMapping("detalles-consulta/{codigo}")
+    @GetMapping("/detalles-consulta/{codigo}")
     public ResponseEntity<MensajeDTO<DetallesConsultaDTO>> verDetalleConsulta(@PathVariable int codigo) throws Exception{
         return ResponseEntity.ok().body(new MensajeDTO<>(false, pacienteService.verDetalleConsulta(codigo)));
     }
