@@ -71,8 +71,8 @@ public class AdministradorController {
         return ResponseEntity.ok().body( new MensajeDTO<>(false, "Estado de PQRS modificado correctamente"));
     }
 
-    @GetMapping("/listarCitas")
-    public ResponseEntity<MensajeDTO<List<ItemCitaAdminDTO>>> listarCitas() throws Exception{
-        return ResponseEntity.ok().body(new MensajeDTO<>(false, administradorService.listarCitas()));
+    @GetMapping("/listarCitas/{codigoMedico}")
+    public ResponseEntity<MensajeDTO<List<ItemCitaAdminDTO>>> listarCitas(@PathVariable int codigoMedico) throws Exception{
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, administradorService.listarCitas(codigoMedico)));
     }
 }

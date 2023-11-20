@@ -177,7 +177,7 @@ public class AdministradorServiceTest {
     @Sql("classpath:dataset.sql" )
     public void listarCitasTest() {
         try {
-            List<ItemCitaAdminDTO> citas = administradorServicio.listarCitas();
+            List<ItemCitaAdminDTO> citas = administradorServicio.listarCitas(4);
             System.out.println(citas.toString());
             Assertions.assertNotEquals(0, citas.size()); // Verifica que la lista no este vacia.
         } catch (Exception e) {

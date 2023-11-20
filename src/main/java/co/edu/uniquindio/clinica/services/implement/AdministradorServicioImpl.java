@@ -310,8 +310,9 @@ public class AdministradorServicioImpl implements AdministradorServices {
     }
 
     @Override
-    public List<ItemCitaAdminDTO> listarCitas() throws Exception {
-        List<Cita> citas = citaRepo.findAll();
+    public List<ItemCitaAdminDTO> listarCitas(int codigoMedico) throws Exception {
+        Optional<Medico> medico =medicoRepo.findById(codigoMedico);
+        List<Cita> citas = citaRepo.findAllByMedico(medico.get());
         List<ItemCitaAdminDTO> respuesta = new ArrayList<>();
 
         if(citas.isEmpty()){
