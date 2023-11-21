@@ -1,6 +1,7 @@
 package co.edu.uniquindio.clinica.controllers;
 
 import co.edu.uniquindio.clinica.dto.MensajeDTO;
+import co.edu.uniquindio.clinica.dto.administrador.ItemMedicoDTO;
 import co.edu.uniquindio.clinica.model.enums.*;
 import co.edu.uniquindio.clinica.services.interfaces.ClinicaServices;
 import lombok.RequiredArgsConstructor;
@@ -40,5 +41,10 @@ public class ClinicaContoller {
     public ResponseEntity<MensajeDTO<List<TipoPQRS>>> listarTiposPQRS() throws Exception{
         return ResponseEntity.ok().body(new MensajeDTO<>(false, clinicaServices.listarTiposPQRS()));
     }
+    @GetMapping("/lista-medicos")
+    public ResponseEntity<MensajeDTO<List<ItemMedicoDTO>>> listarMedicos() throws Exception{
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, clinicaServices.listarMedicos()));
+    }
+
 
 }
