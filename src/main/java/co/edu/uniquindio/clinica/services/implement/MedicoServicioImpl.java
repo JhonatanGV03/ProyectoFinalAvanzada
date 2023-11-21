@@ -120,7 +120,7 @@ public class MedicoServicioImpl implements MedicoServices {
                 )  );
 
         }
-
+//ACtualizar todo
         return respuesta;
 
     }
