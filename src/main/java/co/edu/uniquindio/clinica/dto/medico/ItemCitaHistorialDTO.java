@@ -10,6 +10,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public record ItemCitaHistorialDTO( //Item cita del historial codigoMedico del paciente
+
+        @NotNull
+        int codigoCita,
         @NotNull
         LocalDate fechaAtencion,
         @NotBlank @Length(max = 100)
