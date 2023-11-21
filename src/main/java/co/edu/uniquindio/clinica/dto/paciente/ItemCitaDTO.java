@@ -16,7 +16,7 @@ public record ItemCitaDTO(
         @NotNull
         LocalDate fecha,
         @NotNull
-        LocalTime hora,
+        String hora,
         @NotNull
         Especialidad especialidad,
         @NotBlank @Length(max = 100)

@@ -11,7 +11,7 @@ public record ItemCitaRealizadaDTO( //Item cita realizada por el codigoMedico de
         @NotEmpty
         LocalDate fechaAtencion,
         @NotEmpty
-        LocalTime horaAtencion,
+        String horaAtencion,
         @NotBlank @Length(max = 100)
         String nomPaciente,
         @NotBlank @Length(max = 20)

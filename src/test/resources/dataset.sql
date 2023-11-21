@@ -68,11 +68,8 @@ insert into pqrs values(3, 2, '2023-10-24','Motivo3', 2, 3);
 insert into pqrs values(4, 3, '2023-10-25','Motivo4', 3, 4);
 insert into pqrs values(5, 1, '2023-10-26','Motivo5', 0, 5);
 
-
 insert into mensaje values(1, '2023-10-20','Mensaje1', 1, 1);
 insert into mensaje values(2, '2023-10-21','Mensaje2', 2, 1);
 insert into mensaje values(3, '2023-10-22','Mensaje3', 3, 1);
 insert into mensaje values(4, '2023-10-23','Mensaje4', 4, 1);
 insert into mensaje values(5, '2023-10-24','Mensaje5', 5, 1);
-
-

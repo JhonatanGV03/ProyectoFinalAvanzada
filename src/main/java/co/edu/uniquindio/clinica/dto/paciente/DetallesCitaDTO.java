@@ -2,6 +2,7 @@ package co.edu.uniquindio.clinica.dto.paciente;
 
 import co.edu.uniquindio.clinica.model.enums.Especialidad;
 import co.edu.uniquindio.clinica.model.enums.EstadoCita;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -21,7 +22,7 @@ public record DetallesCitaDTO (
         @NotEmpty
         LocalDate fecha,
         @NotEmpty
-        LocalTime hora,
+        String hora,
         @NotBlank @Length(max = 500)
         String motivoConsulta,
         @NotNull

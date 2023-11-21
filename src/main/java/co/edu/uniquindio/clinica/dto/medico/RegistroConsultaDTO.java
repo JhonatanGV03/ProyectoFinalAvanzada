@@ -6,6 +6,7 @@ import co.edu.uniquindio.clinica.model.enums.TipoSangre;
 import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.Length;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public record RegistroConsultaDTO(
@@ -13,7 +14,7 @@ public record RegistroConsultaDTO(
         @Positive
         int codigoCita,
         @NotNull
-        LocalDateTime fechaHoraAtencion,
+        LocalDate fechaHoraAtencion,
         @NotBlank @Length(max = 500)
         String diagnosticoMedico,
         @NotBlank @Length(max = 500)

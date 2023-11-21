@@ -22,7 +22,7 @@ public record DetallesConsultaDTO(
         @NotEmpty
         LocalDate fechaCita,
         @NotEmpty
-        LocalTime horaCita,
+        String horaCita,
         @NotNull
         EstadoCita estadoCita,
         @NotBlank @Length(max = 500)

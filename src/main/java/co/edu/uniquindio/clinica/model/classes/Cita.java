@@ -29,7 +29,7 @@ public class Cita implements Serializable {
     @Column(nullable = false)
     private LocalDate fechaCita;
     @Column(nullable = false)
-    private LocalTime horaCita;
+    private String horaCita;
     @Column(nullable = false, length = 500)
     private String motivo;
 

@@ -17,7 +17,7 @@ public record ItemCitaMedicoDTO( //Item cita de la lista de citas que tiene el c
         @NotEmpty
         LocalDate fecha,
         @NotEmpty
-        LocalTime hora,
+        String hora,
         @NotNull
         EstadoCita estadoCita
 ) {

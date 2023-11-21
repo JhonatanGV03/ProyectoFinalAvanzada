@@ -20,7 +20,7 @@ public record RegistroCitaDTO(
         @NotNull
         LocalDate fecha,
         @NotNull
-        LocalTime hora,
+        String hora,
         @NotBlank @Length(max = 500)
         String motivoConsulta
 ) {
