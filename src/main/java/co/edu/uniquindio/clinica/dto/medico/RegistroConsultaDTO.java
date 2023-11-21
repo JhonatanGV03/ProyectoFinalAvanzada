@@ -27,6 +27,8 @@ public record RegistroConsultaDTO(
 
 
         //Datos Paciente
+        @NotNull
+        int codigoPaciente,
         @NotBlank @Length(max = 20)
         String cedula,
         @NotBlank @Length(max = 100)

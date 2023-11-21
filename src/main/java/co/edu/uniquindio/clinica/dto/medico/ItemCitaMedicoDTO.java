@@ -10,7 +10,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public record ItemCitaMedicoDTO( //Item cita de la lista de citas que tiene el codigoMedico en su agenda
-        @NotBlank @Length(max = 100)
+         @NotNull
+         int codigoCita,
+         @NotBlank @Length(max = 100)
         String nombrePaciente,
         @NotEmpty
         LocalDate fecha,

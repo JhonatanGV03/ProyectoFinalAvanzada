@@ -39,6 +39,7 @@ public class MedicoServicioImpl implements MedicoServices {
         for( Cita c : citas ){
             if(c.getFechaCita().equals(dia) && c.getEstado().equals(EstadoCita.PROGRAMADA)){
                 respuesta.add( new ItemCitaMedicoDTO(
+                        c.getCodigoCita(),
                         c.getPaciente().getNombre(),
                         c.getFechaCita(),
                         c.getHoraCita(),
@@ -88,6 +89,7 @@ public class MedicoServicioImpl implements MedicoServices {
                 "",
                 cita.getMotivo(),
                 cita.getEstado(),
+                cita.getPaciente().getCodigo(),
                 cita.getPaciente().getCedula(),
                 cita.getPaciente().getNombre(),
                 cita.getPaciente().getCorreo(),
