@@ -233,7 +233,7 @@ public class AdministradorServicioImpl implements AdministradorServices {
                     p.getCodigo(),
                     p.getFechaCreacion(),
                     p.getEstado(),
-                    p.getCita().getPaciente().getNombre()
+                    p.getMotivo()
             ) );
 
         }

@@ -215,7 +215,7 @@ public class PacienteServicioImpl implements PacienteServices {
                     p.getCodigo(),
                     p.getFechaCreacion(),
                     p.getEstado(),
-                    p.getCita().getPaciente().getNombre()
+                    p.getMotivo()
             ) );
         }
         return respuesta;

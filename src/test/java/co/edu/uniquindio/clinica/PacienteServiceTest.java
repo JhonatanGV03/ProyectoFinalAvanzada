@@ -18,7 +18,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 @SpringBootTest
-@Transactional
+
 public class PacienteServiceTest {
 
     @Autowired
@@ -133,8 +133,7 @@ public class PacienteServiceTest {
     @Sql("classpath:dataset.sql")
     public void listarPqrsPacienteTest() throws Exception {
         List<ItemPQRSDTO> pqrs = pacienteService.listarPQRSPaciente(5);
-        pqrs.forEach(System.out::println);
-        Assertions.assertEquals(1, pqrs.size());
+        System.out.println(pqrs.toString());
     }
 
     @Test

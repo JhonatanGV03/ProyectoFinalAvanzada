@@ -1,9 +1,6 @@
 package co.edu.uniquindio.clinica.services.interfaces;
 
-import co.edu.uniquindio.clinica.model.enums.Ciudad;
-import co.edu.uniquindio.clinica.model.enums.EPS;
-import co.edu.uniquindio.clinica.model.enums.Especialidad;
-import co.edu.uniquindio.clinica.model.enums.TipoSangre;
+import co.edu.uniquindio.clinica.model.enums.*;
 
 import java.util.List;
 
@@ -14,4 +11,5 @@ public interface ClinicaServices {
 
     List<Especialidad> listarEspecialidad() throws Exception;
     List<EPS> listarEPS() throws Exception;
+    List<TipoPQRS> listarTiposPQRS() throws Exception;
 }

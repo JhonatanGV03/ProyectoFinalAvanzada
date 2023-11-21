@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
-@Transactional
+
 public class AdministradorServiceTest {
 
     @Autowired
