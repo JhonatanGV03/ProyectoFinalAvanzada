@@ -83,7 +83,7 @@ public class MedicoServicioImpl implements MedicoServices {
 
         return new RegistroConsultaDTO(
                 cita.getCodigoCita(),
-                cita.getFechaCita().atTime(cita.getHoraCita()),
+                cita.getFechaCita(),
                 "",
                 "",
                 "",
@@ -114,7 +114,7 @@ public class MedicoServicioImpl implements MedicoServices {
         for( Cita c : citas ){
                 respuesta.add( new ItemCitaHistorialDTO(
                         c.getCodigoCita(),
-                        c.getFechaCita().atTime(c.getHoraCita()),
+                        c.getFechaCita(),
                         c.getMedico().getNombre(),
                         c.getMedico().getEspecialidad()
                 )  );
