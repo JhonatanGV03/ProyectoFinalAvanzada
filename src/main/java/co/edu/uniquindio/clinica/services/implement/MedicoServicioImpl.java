@@ -113,6 +113,7 @@ public class MedicoServicioImpl implements MedicoServices {
 
         for( Cita c : citas ){
                 respuesta.add( new ItemCitaHistorialDTO(
+                        c.getCodigoCita(),
                         c.getFechaCita().atTime(c.getHoraCita()),
                         c.getMedico().getNombre(),
                         c.getMedico().getEspecialidad()
